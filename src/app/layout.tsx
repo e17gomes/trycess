@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import {  } from "next/font/google";
-import "./styles/globals.css"
-import { ThemeProvider } from "~/components/theme-provider";
-import { Toaster } from "react-hot-toast";
-import { ModeToggle } from "~/components/ui/molecules/modeToggle";
+import { Inter } from "next/font/google";
+import "~/styles/globals.css";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Estudando Next.js com Turbopack",
-  description: "Estudando Next.js com Turbopack",
+  title: "Trycess",
+  description: "Gerenciador de produtos",
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -17,20 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-       className={`antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
-          <ModeToggle/>
-          {children}
-          <Toaster position="top-right" toastOptions={{
-            duration: 3000
-          }}/>
-          </ThemeProvider>
+      <body className={`${inter.className} antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
+import { Card } from "~/components/ui/atoms/card";
+
 export default function Home() {
   return (
-    <div>
+    <Card>
 
-    </div>
+    </Card>
   );
 }
