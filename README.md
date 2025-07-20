@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+TRYCESS - Gerenciador de Produtos
 
-## Getting Started
+Projeto criado com Next.js + Tailwind CSS para gerenciar produtos de forma simples e eficiente.  
+Utiliza tecnologias modernas para garantir performance, escalabilidade e uma ótima experiência de desenvolvimento.
 
-First, run the development server:
+---
 
-```bash
+Tecnologias e Porquês
+
+| Tecnologia                  | Propósito / Justificativa                                              |
+|----------------------------|------------------------------------------------------------------------|
+| **Next.js (v15.4.1)**       | Framework React para SSR/SSG, otimizações nativas, rotas simplificadas, Turbopack para dev mais rápido. |
+| **React (v19.1.0)**         | Biblioteca principal para construir UI reativas e componentes.        |
+| **Tailwind CSS (v4)**       | Framework utilitário para estilização rápida, responsiva e customizável. |
+| **Lucide-react**            | Biblioteca de ícones moderna, leve e flexível para UI.                 |
+| **@tanstack/react-query**   | Gerenciamento de estado assíncrono e cache de dados da API (fetching). |
+| **@tanstack/react-table**   | Biblioteca para tabelas poderosas, personalizáveis e performáticas.    |
+| **react-hook-form**         | Facilita a criação e validação de formulários com performance otimizada. |
+| **zod**                    | Validação de schemas para garantir integridade e segurança dos dados.  |
+| **@radix-ui**               | Componentes acessíveis e prontos para UI complexa (Dialog, Dropdown).  |
+| **next-themes**             | Controle de temas (dark/light) de forma simples e integrada ao Next.js.|
+| **eslint + eslint-config-next** | Análise estática para manter a qualidade e padrões no código.       |
+| **tailwind-merge**          | Mescla classes Tailwind evitando conflitos e duplicações.              |
+| **tw-animate-css**          | Biblioteca para animações CSS compatíveis com Tailwind.                |
+| **typescript**              | Tipagem estática para maior segurança e robustez do código.            |
+
+---
+
+Como instalar
+
+1. Clone o repositório:
+
+git clone https://github.com/e17gomes/trycess.git
+cd trycess
+
+2. Instale as dependências:
+
+npm install
+# ou
+yarn
+# ou
+pnpm install
+
+---
+
+Como rodar a aplicação
+
+Para rodar o ambiente de desenvolvimento com Turbopack (mais rápido):
+
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse em: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para build e produção:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run build
+npm start
+# ou yarn build e yarn start
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+Decisões importantes do projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Campos do Produto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Nome: obrigatório, texto simples
+- Descrição: obrigatório, texto para detalhar o produto
+- Preço: número positivo, pode aceitar valores decimais
+- Estoque: número inteiro, não negativo
 
-## Deploy on Vercel
+Esses campos foram escolhidos para cobrir o básico de um sistema de gerenciamento de estoque e vendas, garantindo validação no frontend com zod e react-hook-form.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Estrutura do projeto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Componentes atômicos (Botões, Cards) para reutilização
+- Contexto para estado global (autenticação, tema)
+- React Query para cache e sincronização dos dados do backend simulado
+- Uso do Turbopack para melhorar a experiência de desenvolvimento com Hot Module Replacement ultra rápida.
+
+---
+
+Contribuindo
+
+Pull requests são bem-vindos! Abra issues para discutir melhorias ou reportar bugs.
+
+---
+
+Licença
+
+MIT License
+
+---
+
+Feito com ❤️ por https://github.com/e17gomes
