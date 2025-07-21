@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { validCredentials } from "~/data/mockUsers";
 import { User } from "~/types/userType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
@@ -17,7 +16,6 @@ export const authManager = {
       (u) => u.email === email && u.password === password
     );
 
-    console.log(user);
     if (!user) {
       throw new Error("Usuário ou senha inválidos");
     }
