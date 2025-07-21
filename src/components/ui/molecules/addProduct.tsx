@@ -68,7 +68,7 @@ const AddProduct = () => {
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
-        <Button className="m-4 rounded-full p-6 text-lg" size={"lg"}>
+        <Button className=" mx-7 p-4 text- w-fit px-8" size={"sm"} variant={"outline"}>
           <PlusCircle /> Adicionar novo produto
         </Button>
       </DialogTrigger>

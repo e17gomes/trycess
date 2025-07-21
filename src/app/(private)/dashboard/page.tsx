@@ -6,11 +6,10 @@ import { ProductsTable } from "./_components/products_table";
 
 const DashboardPage = () => {
   return (
-    <Card className="min-h-[45rem] max-h-[50rem] overflow-auto">
-      <CardTitle className="text-4xl font-bold text-center">
+    <Card className="min-h-[30rem] max-h-[50rem] overflow-auto py-4">
+      <CardTitle className="text-2xl font-bold px-8 ">
         Meus produtos
       </CardTitle>
-      <AddProduct />
 
       <CardContent>
         <ProductsTable />

@@ -17,23 +17,30 @@ import { Loader } from "~/components/ui/atoms/loader";
 import { Card } from "~/components/ui/atoms/card";
 import { TableLoader } from "~/components/ui/molecules/tableLoader";
 import { useProducts } from "~/hooks/useProducts";
+import { Search } from "lucide-react";
+import AddProduct from "~/components/ui/molecules/addProduct";
 
 export function ProductsTable() {
   const { allProducts, columns, isFetching, pagination, setPagination, table } =
     useProducts();
-
+  
   return (
     <Loader loading={isFetching} fallback={<TableLoader />}>
-      <div className="w-full">
-        <div className="flex items-center py-4">
+      <div className="w-full flex flex-col gap-2">
+        <div className="flex justify-between items-center">
+        <div className="flex items-center px-2 border rounded-lg w-fit">
+          <Search size={14} />
           <Input
             placeholder="Filtre por nome"
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm"
-          />
+            className="max-w-sm border-none shadow-none focus:!ring-0
+            "
+            />
+          </div>
+         <AddProduct />
         </div>
         <Card className="rounded-md border p-0">
           <Table internDivClassName="max-h-96">

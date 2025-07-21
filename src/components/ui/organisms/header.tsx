@@ -6,12 +6,12 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <div className="bg-accent rounded-full p-4 mb-4 flex items-center justify-between">
-      <div className="">
+    <div className="bg-accent rounded-full py-2 px-4 my-4 flex items-center justify-between top-1">
+      <div >
         <ModeToggle />
       </div>
       <div>
-        <h1 className="font-bold text-2xl"> TRYCESS </h1>
+        <h1 className="font-seminbold text-2xl"> TRYCESS </h1>
       </div>
       <div className="flex items-center gap-4 ">
         <Button
