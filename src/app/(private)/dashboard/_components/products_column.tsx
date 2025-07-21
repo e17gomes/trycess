@@ -77,9 +77,7 @@ export function productColumn({
       header: () => <div className="text-right">Categoria</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-right font-medium">
-            {row.original.category}
-          </div>
+          <div className="text-right font-medium">{row.original?.category}</div>
         );
       },
     },
