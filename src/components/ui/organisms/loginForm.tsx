@@ -21,6 +21,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [showPassword, setShowPassword] = useState(false);
+
   const { loginForm, handleSubmitLogin, isPending } = useLogin();
   const router = useRouter();
   return (
@@ -57,8 +59,6 @@ export function LoginForm({
               control={loginForm.control}
               name="password"
               render={({ field }) => {
-                const [showPassword, setShowPassword] = useState(false);
-
                 return (
                   <FormItem>
                     <FormLabel htmlFor="password">Senha</FormLabel>
@@ -102,7 +102,7 @@ export function LoginForm({
         </div>
         <div className="text-center text-sm">
           <span
-            onClick={()=>router.push("/register")}
+            onClick={() => router.push("/register")}
             className="underline underline-offset-4 cursor-pointer"
           >
             Registre-se

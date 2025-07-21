@@ -19,6 +19,7 @@ export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [showPassword, setShowPassword] = useState(false);
 
   const { registerForm, handleSubmitRegister, isPending } = useRegister();
   const router = useRouter();
@@ -26,7 +27,9 @@ export function RegisterForm({
   return (
     <Form {...registerForm}>
       <form
-        onSubmit={registerForm.handleSubmit(data=> handleSubmitRegister(data))}
+        onSubmit={registerForm.handleSubmit((data) =>
+          handleSubmitRegister(data)
+        )}
         className={cn("flex flex-col gap-6 w-10/12 m-auto", className)}
         {...props}
       >
@@ -85,7 +88,6 @@ export function RegisterForm({
             control={registerForm.control}
             name="password"
             render={({ field }) => {
-              const [showPassword, setShowPassword] = useState(false);
               return (
                 <FormItem>
                   <FormLabel htmlFor="password">Senha</FormLabel>
@@ -112,7 +114,11 @@ export function RegisterForm({
                         }
                         id="password-visibility-toggle"
                       >
-                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        {showPassword ? (
+                          <EyeOff size={18} />
+                        ) : (
+                          <Eye size={18} />
+                        )}
                       </button>
                     </div>
                   </FormControl>
@@ -128,12 +134,14 @@ export function RegisterForm({
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel htmlFor="confirmPassword">Confirmar Senha</FormLabel>
+                  <FormLabel htmlFor="confirmPassword">
+                    Confirmar Senha
+                  </FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
                         id="confirmPassword"
-                        type={ "password"}
+                        type={"password"}
                         placeholder="Confirme sua senha"
                         autoComplete="new-password"
                         value={field.value}
@@ -155,10 +163,12 @@ export function RegisterForm({
         <Button type="submit" size="lg" disabled={isPending}>
           {isPending ? "Registrando..." : "Registrar"}
         </Button>
-                <span
-            onClick={()=>router.push("/login")}
-            className="underline underline-offset-4 cursor-pointer">Já tem conta? clique aqui. </span>
-
+        <span
+          onClick={() => router.push("/login")}
+          className="underline underline-offset-4 cursor-pointer"
+        >
+          Já tem conta? clique aqui.{" "}
+        </span>
       </form>
     </Form>
   );

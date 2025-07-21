@@ -51,7 +51,7 @@ export const useRegister = () => {
       return { toastId };
     },
 
-    onSuccess(data, variable, context) {
+    onSuccess(_data, variable, context) {
       context.toastId && toast.dismiss(context.toastId);
       toast.success(
         "No momento nossos dados são mockados, mas valeu a tentativa " + variable.fullName + "!", {style: {height: 100}, }
@@ -61,7 +61,7 @@ export const useRegister = () => {
       router.push("/dashboard");
     },
 
-    onError(error: any, _variable, context) {
+    onError(error, _variable, context) {
       context?.toastId && toast.dismiss(context.toastId);
       toast.error(error.message || "Erro ao registrar usuário");
     },
