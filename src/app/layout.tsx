@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: "Trycess",
   description: "Gerenciador de produtos",
-  icons: "/favicon.jpg"
+  icons: "/favicon.jpg",
 };
 
 const inter = Inter({ subsets: ["latin"] });

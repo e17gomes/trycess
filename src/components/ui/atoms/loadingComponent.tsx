@@ -4,8 +4,9 @@ type LoadingComponentProps = {
   className?: string;
 };
 
-export function LoadingComponent({ className }: LoadingComponentProps): JSX.Element {
-
+export function LoadingComponent({
+  className,
+}: LoadingComponentProps): JSX.Element {
   return (
     <svg
       className={`w-40 h-40 text-loading  m-auto ${className} animate-spin`}

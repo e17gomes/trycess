@@ -1,1 +1,3 @@
-export const fakeRequestTime = new Promise((response) => setTimeout(response, 10000));
+export const fakeRequestTime = new Promise((response) =>
+  setTimeout(response, 10000),
+);

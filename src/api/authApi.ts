@@ -5,15 +5,14 @@ import { fakeRequestTime } from "~/utils/fakeRequestTime";
 let loggedInUser: User | null = null;
 
 export const authManager = {
-
   async login(
     email: string,
-    password: string
+    password: string,
   ): Promise<Omit<User, "password">> {
     await fakeRequestTime;
 
     const user = validCredentials.find(
-      (u) => u.email === email && u.password === password
+      (u) => u.email === email && u.password === password,
     );
 
     if (!user) {
@@ -46,7 +45,7 @@ export const authManager = {
     username: string,
     password: string,
     name: string,
-    email: string
+    email: string,
   ): Promise<Omit<User, "password">> {
     await fakeRequestTime;
 

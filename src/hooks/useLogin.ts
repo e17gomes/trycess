@@ -8,7 +8,7 @@ import { authManager } from "~/api/authApi";
 import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
-  const router = useRouter()
+  const router = useRouter();
   const loginForm = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -21,9 +21,9 @@ export const useLogin = () => {
   const { mutate: handleSubmitLogin, isPending } = useMutation({
     mutationKey: ["submitLogin"],
     mutationFn: async (formValues: loginType) => {
-      const { email, password } = formValues 
-      const response = await authManager.login(email, password)
-      return response
+      const { email, password } = formValues;
+      const response = await authManager.login(email, password);
+      return response;
     },
 
     onMutate() {
@@ -34,9 +34,9 @@ export const useLogin = () => {
     onSuccess(data, _variable, context) {
       context.toastId && toast?.dismiss(context?.toastId);
       document.cookie = `tkn=mocked_token_value; path=/;`;
-      localStorage.setItem("loggedInUser", JSON.stringify(data))
+      localStorage.setItem("loggedInUser", JSON.stringify(data));
       router.push("/dashboard");
-      toast.success("Bem vindo " + data?.name  + "!");
+      toast.success("Bem vindo " + data?.name + "!");
     },
 
     onError(error, _variable, context) {

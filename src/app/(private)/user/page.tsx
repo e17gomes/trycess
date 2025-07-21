@@ -1,6 +1,14 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeftIcon, Mail, UserCircle, Hash, Package, PackageOpen, DollarSign } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  Mail,
+  UserCircle,
+  Hash,
+  Package,
+  PackageOpen,
+  DollarSign,
+} from "lucide-react";
 import Link from "next/link";
 import { productManager } from "~/api/productsApi";
 import { Button } from "~/components/ui/atoms/button";
@@ -18,9 +26,9 @@ const UserPage = () => {
   const { data: products, isFetching } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const response = await productManager.getAllProducts()
-      console.log(response)
-      return response
+      const response = await productManager.getAllProducts();
+      console.log(response);
+      return response;
     },
   });
 
@@ -62,20 +70,33 @@ const UserPage = () => {
           <div className="flex items-center gap-2">
             <Package className="w-4 h-4 text-primary" />
             <span>
-              <strong>Produtos cadastrados:</strong> {isFetching ?  "Carregando..." : products?.length }
+              <strong>Produtos cadastrados:</strong>{" "}
+              {isFetching ? "Carregando..." : products?.length}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <PackageOpen className="w-4 h-4 text-primary" />
             <span>
-              <strong>Produtos em estoque:</strong> {isFetching ?  "Carregando..." : products?.reduce((total, product) => total + product.stock, 0)} 
+              <strong>Produtos em estoque:</strong>{" "}
+              {isFetching
+                ? "Carregando..."
+                : products?.reduce(
+                    (total, product) => total + product.stock,
+                    0,
+                  )}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-primary" />
             <span>
-              <strong>Valor em produtos:</strong> {isFetching ?  "Carregando..." : products?.reduce((total, product) => total + Number(product.price), 0)} 
+              <strong>Valor em produtos:</strong>{" "}
+              {isFetching
+                ? "Carregando..."
+                : products?.reduce(
+                    (total, product) => total + Number(product.price),
+                    0,
+                  )}
             </span>
           </div>
         </CardContent>

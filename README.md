@@ -7,22 +7,22 @@ Utiliza tecnologias modernas para garantir performance, escalabilidade e uma ót
 
 Tecnologias e Porquês
 
-| Tecnologia                  | Propósito / Justificativa                                              |
-|----------------------------|------------------------------------------------------------------------|
-| **Next.js (v15.4.1)**       | Framework React para SSR/SSG, otimizações nativas, rotas simplificadas, Turbopack para dev mais rápido. |
-| **React (v19.1.0)**         | Biblioteca principal para construir UI reativas e componentes.        |
-| **Tailwind CSS (v4)**       | Framework utilitário para estilização rápida, responsiva e customizável. |
-| **Lucide-react**            | Biblioteca de ícones moderna, leve e flexível para UI.                 |
-| **@tanstack/react-query**   | Gerenciamento de estado assíncrono e cache de dados da API (fetching). |
-| **@tanstack/react-table**   | Biblioteca para tabelas poderosas, personalizáveis e performáticas.    |
-| **react-hook-form**         | Facilita a criação e validação de formulários com performance otimizada. |
-| **zod**                    | Validação de schemas para garantir integridade e segurança dos dados.  |
-| **@radix-ui**               | Componentes acessíveis e prontos para UI complexa (Dialog, Dropdown).  |
-| **next-themes**             | Controle de temas (dark/light) de forma simples e integrada ao Next.js.|
-| **eslint + eslint-config-next** | Análise estática para manter a qualidade e padrões no código.       |
-| **tailwind-merge**          | Mescla classes Tailwind evitando conflitos e duplicações.              |
-| **tw-animate-css**          | Biblioteca para animações CSS compatíveis com Tailwind.                |
-| **typescript**              | Tipagem estática para maior segurança e robustez do código.            |
+| Tecnologia                      | Propósito / Justificativa                                                                               |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Next.js (v15.4.1)**           | Framework React para SSR/SSG, otimizações nativas, rotas simplificadas, Turbopack para dev mais rápido. |
+| **React (v19.1.0)**             | Biblioteca principal para construir UI reativas e componentes.                                          |
+| **Tailwind CSS (v4)**           | Framework utilitário para estilização rápida, responsiva e customizável.                                |
+| **Lucide-react**                | Biblioteca de ícones moderna, leve e flexível para UI.                                                  |
+| **@tanstack/react-query**       | Gerenciamento de estado assíncrono e cache de dados da API (fetching).                                  |
+| **@tanstack/react-table**       | Biblioteca para tabelas poderosas, personalizáveis e performáticas.                                     |
+| **react-hook-form**             | Facilita a criação e validação de formulários com performance otimizada.                                |
+| **zod**                         | Validação de schemas para garantir integridade e segurança dos dados.                                   |
+| **@radix-ui**                   | Componentes acessíveis e prontos para UI complexa (Dialog, Dropdown).                                   |
+| **next-themes**                 | Controle de temas (dark/light) de forma simples e integrada ao Next.js.                                 |
+| **eslint + eslint-config-next** | Análise estática para manter a qualidade e padrões no código.                                           |
+| **tailwind-merge**              | Mescla classes Tailwind evitando conflitos e duplicações.                                               |
+| **tw-animate-css**              | Biblioteca para animações CSS compatíveis com Tailwind.                                                 |
+| **typescript**                  | Tipagem estática para maior segurança e robustez do código.                                             |
 
 ---
 
@@ -36,9 +36,13 @@ cd trycess
 2. Instale as dependências:
 
 npm install
+
 # ou
+
 yarn
+
 # ou
+
 pnpm install
 
 ---
@@ -48,9 +52,13 @@ Como rodar a aplicação
 Para rodar o ambiente de desenvolvimento com Turbopack (mais rápido):
 
 npm run dev
+
 # ou
+
 yarn dev
+
 # ou
+
 pnpm dev
 
 Acesse em: http://localhost:3000
@@ -59,6 +67,7 @@ Para build e produção:
 
 npm run build
 npm start
+
 # ou yarn build e yarn start
 
 ---

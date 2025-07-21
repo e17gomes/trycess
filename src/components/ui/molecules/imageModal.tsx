@@ -14,7 +14,7 @@ type ImageModalProps = {
 };
 
 const ImageModal = ({ src, alt }: ImageModalProps) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,12 +26,15 @@ const ImageModal = ({ src, alt }: ImageModalProps) => {
       </DialogTrigger>
       <DialogContent className="flex items-center justify-center">
         <DialogTitle className="sr-only">{alt}</DialogTitle>
-        <Loader loading={loading} fallback={<LoaderIcon className="animate-spin"/>}>
+        <Loader
+          loading={loading}
+          fallback={<LoaderIcon className="animate-spin" />}
+        >
           <img
             src={src}
             alt={alt}
-            onLoad={()=>setLoading(false)}
-            onError={()=>setLoading(false)}
+            onLoad={() => setLoading(false)}
+            onError={() => setLoading(false)}
             className="max-w-full max-h-[80vh] object-contain"
           />
         </Loader>

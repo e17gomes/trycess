@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/atoms/button";
 import { Card } from "~/components/ui/atoms/card";
-import { CurlyBraces, ExternalLink, Github } from "lucide-react"; 
+import { CurlyBraces, ExternalLink, Github } from "lucide-react";
 
 export default function Home() {
   return (
@@ -17,10 +17,22 @@ export default function Home() {
 
         <div className="flex justify-center flex-col items-center gap-4">
           <Link href="/login" passHref>
-            <Button size={"lg"} className="text-lg flex items-center p-6 w-64">Login  <ExternalLink /></Button>
+            <Button size={"lg"} className="text-lg flex items-center p-6 w-64">
+              Login <ExternalLink />
+            </Button>
           </Link>
-          <Link href="https://github.com/e17gomes/trycess" target="_blank" rel="noopener noreferrer">
-            <Button size={"lg"} variant={"outline"} className="text-lg flex items-center p-6 w-64">Meu código  <Github /></Button>
+          <Link
+            href="https://github.com/e17gomes/trycess"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              size={"lg"}
+              variant={"outline"}
+              className="text-lg flex items-center p-6 w-64"
+            >
+              Meu código <Github />
+            </Button>
           </Link>
         </div>
       </Card>

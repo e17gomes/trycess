@@ -15,16 +15,16 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-          }}
-        />
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+            }}
+          />
         </QueryClientProvider>
-        </AuthProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

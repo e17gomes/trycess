@@ -31,52 +31,51 @@ export const useProducts = () => {
     },
   });
 
-  
   const editProduct = useMutation({
     mutationKey: ["EditProduct"],
     mutationFn: async ({ id, data }: { id: number; data: BaseProduct }) => {
-        const response = await productManager.updateProduct(id, data);
-        return response
-      },
-      onMutate() {
-          const toastId = toast.loading("Editando produto...")
-          return {toastId}
-      },
-      onSuccess(_d, _v, context) {
-          context.toastId && toast.dismiss(context.toastId)
-          queryClient.invalidateQueries({queryKey:["GetAllProducts"]})
-          toast.success("Produto editado com sucesso")
-      },
-      onError(error, _v, context) {
-          context?.toastId && toast.dismiss(context.toastId)
-          console.error(error.message)
-          toast.error( "Erro ao editar produto" )
-      },
+      const response = await productManager.updateProduct(id, data);
+      return response;
+    },
+    onMutate() {
+      const toastId = toast.loading("Editando produto...");
+      return { toastId };
+    },
+    onSuccess(_d, _v, context) {
+      context.toastId && toast.dismiss(context.toastId);
+      queryClient.invalidateQueries({ queryKey: ["GetAllProducts"] });
+      toast.success("Produto editado com sucesso");
+    },
+    onError(error, _v, context) {
+      context?.toastId && toast.dismiss(context.toastId);
+      console.error(error.message);
+      toast.error("Erro ao editar produto");
+    },
   });
-    
+
   const deleteProduct = useMutation({
     mutationKey: ["EditProduct"],
     mutationFn: async ({ id }: { id: number }) => {
-        const response = await productManager.deleteProduct(id);
-        return response
-      },
-      onMutate() {
-          const toastId = toast.loading("Editando produto...")
-          return {toastId}
-      },
-      onSuccess(_d, _v, context) {
-          context.toastId && toast.dismiss(context.toastId)
-          toast.success("Produto deletado com sucesso")
-          queryClient.invalidateQueries({queryKey:["GetAllProducts"]})
-      },
-      onError(error, _v, context) {
-          context?.toastId && toast.dismiss(context.toastId)
-          console.error(error.message)
-          toast.error( "Erro ao deletar produto" )
-      },
+      const response = await productManager.deleteProduct(id);
+      return response;
+    },
+    onMutate() {
+      const toastId = toast.loading("Editando produto...");
+      return { toastId };
+    },
+    onSuccess(_d, _v, context) {
+      context.toastId && toast.dismiss(context.toastId);
+      toast.success("Produto deletado com sucesso");
+      queryClient.invalidateQueries({ queryKey: ["GetAllProducts"] });
+    },
+    onError(error, _v, context) {
+      context?.toastId && toast.dismiss(context.toastId);
+      console.error(error.message);
+      toast.error("Erro ao deletar produto");
+    },
   });
 
-  const { columns } = productColumn({editProduct, deleteProduct });
+  const { columns } = productColumn({ editProduct, deleteProduct });
   const table = useReactTable({
     data: allProducts ?? [],
     columns,

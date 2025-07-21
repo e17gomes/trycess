@@ -21,7 +21,7 @@ export const useRegister = () => {
       path: ["confirmPassword"],
     });
 
-    type RegisterUserType = z.infer<typeof registerSchema>
+  type RegisterUserType = z.infer<typeof registerSchema>;
   const registerForm = useForm<RegisterUserType>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -41,7 +41,7 @@ export const useRegister = () => {
         formValues.fullName,
         formValues.email,
         formValues.password,
-        formValues.confirmPassword
+        formValues.confirmPassword,
       );
       return response;
     },
@@ -54,7 +54,10 @@ export const useRegister = () => {
     onSuccess(_data, variable, context) {
       context.toastId && toast.dismiss(context.toastId);
       toast.success(
-        "No momento nossos dados são mockados, mas valeu a tentativa " + variable.fullName + "!", {style: {height: 100}, }
+        "No momento nossos dados são mockados, mas valeu a tentativa " +
+          variable.fullName +
+          "!",
+        { style: { height: 100 } },
       );
 
       //só para ver se o middleware tá bom de verdade kkkk

@@ -28,7 +28,7 @@ export function RegisterForm({
     <Form {...registerForm}>
       <form
         onSubmit={registerForm.handleSubmit((data) =>
-          handleSubmitRegister(data)
+          handleSubmitRegister(data),
         )}
         className={cn("flex flex-col gap-6 w-10/12 m-auto", className)}
         {...props}
