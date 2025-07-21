@@ -1,8 +1,10 @@
-import { LogOut, UserCircle } from "lucide-react";
+
+import { UserCircle } from "lucide-react";
 import { Button } from "~/components/ui/atoms/button";
 import { ModeToggle } from "~/components/ui/molecules/modeToggle";
 import { useLogout } from "~/hooks/useLogout";
 import LogOutButton from "../molecules/logoutButton";
+import Link from "next/link";
 
 export const Header = () => {
     return(
@@ -13,10 +15,12 @@ export const Header = () => {
         <div>
           <h1 className="font-bold text-2xl"> TRYCESS </h1>
         </div>
-        <div className="flex items-center gap-4">
-          <Button size="icon" variant="ghost" className="rounded-full">
+        <div className="flex items-center gap-4 ">
+          <Button size="icon" className=" rounded-full bg-accent-foreground/30 w-8 h-8 flex items-center justify-center" asChild >
+          <Link href={"/user"}   >
             <UserCircle />
-          </Button>
+            </Link>
+            </Button>
           <LogOutButton/>
         </div>
       </div>

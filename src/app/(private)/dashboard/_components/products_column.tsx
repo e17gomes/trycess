@@ -1,32 +1,23 @@
 "use client";
 
-import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  ArrowUpDown,
-  Image as Image2,
-  MoreHorizontal,
-  Pen,
-  Trash,
-} from "lucide-react";
+import { ArrowUpDown, Image as Image2, MoreHorizontal } from "lucide-react";
 
+import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 import { Button } from "~/components/ui/atoms/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/atoms/dropdown-menu";
-import { Product } from "~/types/productsType";
-import ImageModal from "~/components/ui/molecules/imageModal";
-import { productManager } from "~/api/productsApi";
-import { EditProductDialog } from "~/components/ui/molecules/editDialog";
-import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
-import { EditProductHandlerType } from "~/types/editProductType";
-import { DeleteProductHandlerType } from "~/types/deleteProduct";
 import { DeleteProductDialog } from "~/components/ui/molecules/deleteDialog";
+import { EditProductDialog } from "~/components/ui/molecules/editDialog";
+import ImageModal from "~/components/ui/molecules/imageModal";
+import { DeleteProductHandlerType } from "~/types/deleteProductType";
+import { EditProductHandlerType } from "~/types/editProductType";
+import { Product } from "~/types/productsType";
 
 type productsColumProps = {
   editProduct: EditProductHandlerType;
@@ -78,6 +69,17 @@ export function productColumn({
       cell: ({ row }) => {
         return (
           <div className="text-right font-medium">{row.original.stock}</div>
+        );
+      },
+    },
+    {
+      accessorKey: "category",
+      header: () => <div className="text-right">Categoria</div>,
+      cell: ({ row }) => {
+        return (
+          <div className="text-right font-medium">
+            {row.original.description}
+          </div>
         );
       },
     },

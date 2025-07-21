@@ -17,7 +17,6 @@ import toast from "react-hot-toast";
 import { queryClient } from "~/lib/tanstack-query";
 
 export const useProducts = () => {
-  // States no inicio da página, apenas para padronizar mesmo
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
@@ -32,6 +31,7 @@ export const useProducts = () => {
     },
   });
 
+  
   const editProduct = useMutation({
     mutationKey: ["EditProduct"],
     mutationFn: async ({ id, data }: { id: number; data: BaseProduct }) => {

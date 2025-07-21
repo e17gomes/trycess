@@ -1,144 +1,77 @@
+import { useQuery } from "@tanstack/react-query";
+import { validCredentials } from "~/data/mockUsers";
+import { User } from "~/types/userType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
-/**
- * Tipo que representa um usuário do sistema.
- * A senha está em texto plano aqui só para simulação (não faça assim em produção).
- */
-type User = {
-  id: number;
-  username: string;
-  name: string;
-  email: string;
-  password: string;
-};
-
-/**
- * Tipo para resposta da função login.
- * Retorna sucesso, o usuário (sem senha) ou mensagem de erro.
- */
-type LoginResponse = {
-  success: boolean;
-  user?: Omit<User, "password">; // usuário sem a senha
-  error?: string;
-};
-
-/**
- * Tipo para resposta da função register.
- * Similar ao login, mas para cadastro.
- */
-type RegisterResponse = {
-  success: boolean;
-  user?: Omit<User, "password">;
-  error?: string;
-};
-
-/**
- * Lista simulada de usuários cadastrados no sistema.
- * Começa com um usuário fixo.
- */
-const users: User[] = [
-  {
-    id: 1,
-    username: "admin",
-    name: "Admin User",
-    email: "admin@example.com",
-    password: "1234", // só para mock, jamais em produção
-  },
-];
-
-/**
- * Variável para armazenar o usuário logado na sessão simulada.
- * Null significa que ninguém está logado.
- */
 let loggedInUser: User | null = null;
 
-/**
- * Objeto que simula o gerenciador de autenticação.
- * Possui métodos para login, logout, obter usuário atual e registro.
- */
 export const authManager = {
-  /**
-   * Faz login verificando username e senha.
-   * Se válidos, armazena usuário como "logado" e retorna sucesso com dados.
-   * Se inválidos, retorna erro.
-   */
-  async login(username: string, password: string): Promise<LoginResponse> {
-    await fakeRequestTime; // simula atraso de rede
 
-    // Procura usuário que bate com username e senha fornecidos
-    const user = users.find(
-      (u) => u.username === username && u.password === password
+  async login(
+    email: string,
+    password: string
+  ): Promise<Omit<User, "password">> {
+    await fakeRequestTime;
+
+    const user = validCredentials.find(
+      (u) => u.email === email && u.password === password
     );
 
-    // Se achou, marca como logado e retorna dados sem a senha
-    if (user) {
-      loggedInUser = user;
-      const { password, ...userWithoutPass } = user;
-      return { success: true, user: userWithoutPass };
+    console.log(user);
+    if (!user) {
+      throw new Error("Usuário ou senha inválidos");
     }
 
-    // Caso contrário, erro de login
-    return { success: false, error: "Usuário ou senha inválidos" };
-  },
+    loggedInUser = user;
 
-  /**
-   * Faz logout simplesmente limpando o usuário logado.
-   */
-  async logout(): Promise<void> {
-    await fakeRequestTime; // atraso simulado
-    loggedInUser = null; // remove usuário logado
-  },
-
-  /**
-   * Retorna o usuário logado (sem a senha).
-   * Retorna null se ninguém estiver logado.
-   */
-  async getCurrentUser(): Promise<Omit<User, "password"> | null> {
-    await fakeRequestTime; // atraso simulado
-
-    if (!loggedInUser) return null;
-
-    const { password, ...userWithoutPass } = loggedInUser;
+    const { password: _, ...userWithoutPass } = user;
     return userWithoutPass;
   },
 
-  /**
-   * Registra um novo usuário, se username não existir ainda.
-   * Em caso de sucesso, adiciona usuário à lista e marca como logado.
-   * Retorna o usuário criado (sem senha) ou erro.
-   */
+  async logout(): Promise<void> {
+    await fakeRequestTime;
+    document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+    loggedInUser = null;
+  },
+
+  async getCurrentUser(): Promise<Omit<User, "password"> | null> {
+    await fakeRequestTime;
+
+    if (!loggedInUser) return null;
+
+    const { password: _, ...userWithoutPass } = loggedInUser;
+    return userWithoutPass;
+  },
+
   async register(
     username: string,
     password: string,
     name: string,
     email: string
-  ): Promise<RegisterResponse> {
-    await fakeRequestTime; // atraso simulado
+  ): Promise<Omit<User, "password">> {
+    await fakeRequestTime;
 
-    // Verifica se username já está cadastrado
-    const exists = users.some((u) => u.username === username);
+    const exists = validCredentials.some((u) => u.email === email);
 
     if (exists) {
-      return { success: false, error: "Usuário já existe" };
+      throw new Error("Usuário já existe");
     }
 
-    // Cria novo usuário com id sequencial
     const newUser: User = {
-      id: users.length + 1,
+      id: validCredentials.length + 1,
       username,
       password,
       name,
       email,
     };
 
-    // Adiciona na lista de usuários
-    users.push(newUser);
+    validCredentials.push(newUser);
+    localStorage.setItem("users", JSON.stringify(validCredentials));
 
-    // Marca como logado
     loggedInUser = newUser;
 
-    // Retorna usuário sem senha
     const { password: _, ...userWithoutPass } = newUser;
-    return { success: true, user: userWithoutPass };
+    return userWithoutPass;
   },
 };

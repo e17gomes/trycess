@@ -15,13 +15,14 @@ import {
 import { Card, CardDescription, CardTitle } from "../atoms/card";
 import { useState } from "react";
 import { AtSign, Eye, EyeOff, Lock, Stars } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-
   const { loginForm, handleSubmitLogin, isPending } = useLogin();
+  const router = useRouter();
   return (
     <Form {...loginForm}>
       <form
@@ -100,9 +101,12 @@ export function LoginForm({
           </Button>
         </div>
         <div className="text-center text-sm">
-          <a href="#" className="underline underline-offset-4">
+          <span
+            onClick={()=>router.push("/register")}
+            className="underline underline-offset-4 cursor-pointer"
+          >
             Registre-se
-          </a>
+          </span>
         </div>
         <Card className="bg-chart-1 p-4 w-64 ">
           <CardTitle className="flex gap-1 items-center">
