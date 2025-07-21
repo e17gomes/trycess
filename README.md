@@ -76,9 +76,10 @@ Esses campos foram escolhidos para cobrir o básico de um sistema de gerenciamen
 
 Estrutura do projeto
 
-- Componentes atômicos (Botões, Cards) para reutilização
+- Componentes (Botões, Cards) para reutilização
 - Contexto para estado global (autenticação, tema)
 - React Query para cache e sincronização dos dados do backend simulado
+- Validações de formulário com Zod
 - Uso do Turbopack para melhorar a experiência de desenvolvimento com Hot Module Replacement ultra rápida.
 
 ---
