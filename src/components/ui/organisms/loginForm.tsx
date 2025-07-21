@@ -101,12 +101,12 @@ export function LoginForm({
           </Button>
         </div>
         <div className="text-center text-sm">
-          <span
+          <Button variant={"ghost"}
             onClick={() => router.push("/register")}
             className="underline underline-offset-4 cursor-pointer"
           >
             Registre-se
-          </span>
+          </Button>
         </div>
         <Card className="bg-chart-1 p-4 w-64 ">
           <CardTitle className="flex gap-1 items-center">

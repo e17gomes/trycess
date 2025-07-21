@@ -163,12 +163,12 @@ export function RegisterForm({
         <Button type="submit" size="lg" disabled={isPending}>
           {isPending ? "Registrando..." : "Registrar"}
         </Button>
-        <span
+        <Button variant={"ghost"}
           onClick={() => router.push("/login")}
           className="underline underline-offset-4 cursor-pointer"
         >
           Já tem conta? clique aqui.{" "}
-        </span>
+        </Button>
       </form>
     </Form>
   );
