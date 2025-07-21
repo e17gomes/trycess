@@ -80,6 +80,8 @@ Campos do Produto
 - Descrição: obrigatório, texto para detalhar o produto
 - Preço: número positivo, pode aceitar valores decimais
 - Estoque: número inteiro, não negativo
+- Imagem: opcional, texto
+- Categoria: obrigatório, texto simples
 
 Esses campos foram escolhidos para cobrir o básico de um sistema de gerenciamento de estoque e vendas, garantindo validação no frontend com zod e react-hook-form.
 
@@ -92,12 +94,13 @@ Estrutura do projeto
 - Uso do Turbopack para melhorar a experiência de desenvolvimento com Hot Module Replacement ultra rápida.
 
 ---
-
-Contribuindo
-
-Pull requests são bem-vindos! Abra issues para discutir melhorias ou reportar bugs.
-
----
+ 🌟 Feat's Adicionais
+- Feat de pagina de usuáirio
+- Feat de pagina de registro (para futuras integrações)
+- Feat Zoom Image, quando clicada a imagem é aberta em um modal para melhor visualização.
+- Feat Filtrar produto por nome
+- Feat Alterar temas da aplicação (dark mode, ligth mode)
+- Feat Paginação de tabela
 
 Licença
 
