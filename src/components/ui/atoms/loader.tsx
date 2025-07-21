@@ -1,4 +1,3 @@
-import { Loader2Icon } from "lucide-react";
 import { FC, ReactNode } from "react";
 import Loading from "~/app/loading";
 

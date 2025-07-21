@@ -163,7 +163,8 @@ export function RegisterForm({
         <Button type="submit" size="lg" disabled={isPending}>
           {isPending ? "Registrando..." : "Registrar"}
         </Button>
-        <Button variant={"ghost"}
+        <Button
+          variant={"ghost"}
           onClick={() => router.push("/login")}
           className="underline underline-offset-4 cursor-pointer"
         >

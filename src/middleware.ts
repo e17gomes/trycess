@@ -1,4 +1,4 @@
-import { NextRequest, type MiddlewareConfig, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const publicRoutes = [
   { path: "/", whenAuthIsAllowed: "next" },

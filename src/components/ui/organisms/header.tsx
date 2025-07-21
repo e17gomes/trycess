@@ -1,7 +1,6 @@
 import { UserCircle } from "lucide-react";
 import { Button } from "~/components/ui/atoms/button";
 import { ModeToggle } from "~/components/ui/molecules/modeToggle";
-import { useLogout } from "~/hooks/useLogout";
 import LogOutButton from "../molecules/logoutButton";
 import Link from "next/link";
 

@@ -99,7 +99,6 @@ export function productColumn({
       enableHiding: false,
       cell: ({ row }) => {
         const product = row.original;
-        const { id } = product;
 
         return (
           <DropdownMenu>

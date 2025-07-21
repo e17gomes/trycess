@@ -8,7 +8,7 @@ import {
 } from "~/components/ui/atoms/dialog";
 import { Button } from "~/components/ui/atoms/button";
 import { Pen, Save } from "lucide-react";
-import { CreateProduct, Product } from "~/types/productsType";
+import { Product } from "~/types/productsType";
 import { DropdownMenuItem } from "~/components/ui/atoms/dropdown-menu";
 import {
   Form,

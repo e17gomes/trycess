@@ -52,14 +52,14 @@ const AddProduct = () => {
       return { toastId };
     },
     onSuccess(_data, _v, context) {
-      context.toastId && toast.dismiss(context.toastId);
+      context?.toastId && toast.dismiss(context?.toastId);
       toast.success("Produto adicionado");
       handleCloseDialog();
       queryClient.invalidateQueries({ queryKey: ["GetAllProducts"] });
       createProductForm.reset();
     },
     onError(error, _v, context) {
-      context?.toastId && toast.dismiss(context.toastId);
+      context?.toastId && toast.dismiss(context?.toastId);
       console.error(error.message);
       toast.error("Erro ao adicionar produto");
     },

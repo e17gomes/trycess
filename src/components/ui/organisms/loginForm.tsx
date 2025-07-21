@@ -2,7 +2,6 @@
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/atoms/button";
 import { Input } from "~/components/ui/atoms/input";
-import { Label } from "~/components/ui/atoms/label";
 import { useLogin } from "~/hooks/useLogin";
 import {
   Form,
@@ -101,7 +100,8 @@ export function LoginForm({
           </Button>
         </div>
         <div className="text-center text-sm">
-          <Button variant={"ghost"}
+          <Button
+            variant={"ghost"}
             onClick={() => router.push("/register")}
             className="underline underline-offset-4 cursor-pointer"
           >

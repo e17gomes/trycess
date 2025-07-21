@@ -1,4 +1,4 @@
-import { Copyright, CopyrightIcon } from "lucide-react";
+import { Copyright } from "lucide-react";
 import { Header } from "~/components/ui/organisms/header";
 import "~/styles/globals.css";
 
