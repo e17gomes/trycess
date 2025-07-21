@@ -1,11 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { authManager } from "~/api/authApi";
 
 export const useLogout = () => {
+  const router = useRouter();
+
   const { mutate: handleLogout, isPending } = useMutation({
     mutationKey: ["submitLogin"],
     mutationFn: async () => {
-      const response = { success: true };
+      const response = await authManager.logout();
       return response;
     },
     onMutate() {
@@ -14,9 +18,8 @@ export const useLogout = () => {
     },
     onSuccess(_data, _variable, context) {
       context.toastId && toast?.dismiss(context?.toastId);
-      document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-      window.location.href = "/login";
       toast.success("Até breve !");
+      router.push("/login");
     },
     onError(error, _variable, context) {
       context?.toastId && toast.dismiss(context.toastId);

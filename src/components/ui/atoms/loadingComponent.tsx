@@ -8,7 +8,7 @@ export function LoadingComponent({ className }: LoadingComponentProps): JSX.Elem
 
   return (
     <svg
-      className={`w-40 h-40 text-chart-1 m-auto ${className} animate-spin`}
+      className={`w-40 h-40 text-loading  m-auto ${className} animate-spin`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

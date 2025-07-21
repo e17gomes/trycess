@@ -64,6 +64,7 @@ const AddProduct = () => {
       toast.error("Erro ao adicionar produto");
     },
   });
+
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
@@ -200,6 +201,7 @@ const AddProduct = () => {
                     <FormLabel>Descrição</FormLabel>
                     <FormControl>
                       <Input
+                        maxLength={50}
                         placeholder="Insira a descrição"
                         value={field.value}
                         onChange={field.onChange}

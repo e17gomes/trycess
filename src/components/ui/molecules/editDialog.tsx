@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "~/components/ui/atoms/dialog";
 import { Button } from "~/components/ui/atoms/button";
 import { Pen, Save } from "lucide-react";
@@ -23,7 +22,6 @@ import { Input } from "~/components/ui/atoms/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateProductSchema } from "~/schemas/productSchema";
-import { UseMutationResult } from "@tanstack/react-query";
 import { masks } from "~/utils/inputMasks";
 import { EditProductHandlerType } from "~/types/editProductType";
 
@@ -49,24 +47,29 @@ export const EditProductDialog = ({
     },
   });
 
-    const onSubmit = async (data: Product) => {
-        const { id, ...rest } = data;
-
-    await editProductHandler.mutate({id, data:rest});
+  const onSubmit = (data: Product) => {
+    const { id, ...rest } = data;
+    editProductHandler.mutate({ id, data: rest });
   };
 
   return (
-    <Dialog>
+    <Dialog
+      onOpenChange={(open) => {
+        if (open) {
+          editProductForm.reset(product);
+        }
+      }}
+    >
       <DialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e)=>e.preventDefault()}>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pen className="mr-2 h-4 w-4" />
           Editar produto
         </DropdownMenuItem>
       </DialogTrigger>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-lg" aria-describedby={undefined}>
         <DialogTitle>Editar produto</DialogTitle>
 
-<Form {...editProductForm}>
+        <Form {...editProductForm}>
           <form
             onSubmit={editProductForm.handleSubmit(onSubmit)}
             className=" grid grid-cols-2 gap-4"
@@ -189,6 +192,7 @@ export const EditProductDialog = ({
                     <FormLabel>Descrição</FormLabel>
                     <FormControl>
                       <Input
+                        maxLength={50}
                         placeholder="Insira a descrição"
                         value={field.value}
                         onChange={field.onChange}

@@ -4,7 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
-import { ModeToggle } from "~/components/ui/molecules/modeToggle";
+import { AuthProvider } from "~/contexts/AuthContext";
 import { queryClient } from "../lib/tanstack-query";
 
 interface ProvidersProps {
@@ -14,6 +14,7 @@ interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <AuthProvider>
       <QueryClientProvider client={queryClient}>
         {children}
         <Toaster
@@ -22,7 +23,8 @@ export function Providers({ children }: ProvidersProps) {
             duration: 3000,
           }}
         />
-      </QueryClientProvider>
+        </QueryClientProvider>
+        </AuthProvider>
     </ThemeProvider>
   );
 }
