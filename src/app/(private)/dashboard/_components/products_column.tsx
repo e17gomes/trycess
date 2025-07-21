@@ -78,7 +78,7 @@ export function productColumn({
       cell: ({ row }) => {
         return (
           <div className="text-right font-medium">
-            {row.original.description}
+            {row.original.category}
           </div>
         );
       },
