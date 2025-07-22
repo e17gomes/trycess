@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { loginType } from "~/types/loginType";
-import { loginSchema } from "../schemas/loginSchema";
 import { authManager } from "~/api/authApi";
-import { useRouter } from "next/navigation";
+import type { loginType } from "~/types/loginType";
+import { loginSchema } from "../schemas/loginSchema";
 
 export const useLogin = () => {
   const router = useRouter();
@@ -33,6 +33,7 @@ export const useLogin = () => {
 
     onSuccess(data, _variable, context) {
       context.toastId && toast?.dismiss(context?.toastId);
+      // biome-ignore lint/suspicious/noDocumentCookie: <>
       document.cookie = `tkn=mocked_token_value; path=/;`;
       localStorage.setItem("loggedInUser", JSON.stringify(data));
       router.push("/dashboard");

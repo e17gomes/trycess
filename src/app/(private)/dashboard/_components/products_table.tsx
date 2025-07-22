@@ -1,8 +1,9 @@
 "use client";
-
-import * as React from "react";
 import { flexRender } from "@tanstack/react-table";
+import { Search } from "lucide-react";
+import { Card } from "~/components/ui/atoms/card";
 import { Input } from "~/components/ui/atoms/input";
+import { Loader } from "~/components/ui/atoms/loader";
 import {
   PageSizeSelector,
   Table,
@@ -13,8 +14,7 @@ import {
   TablePaginationControls,
   TableRow,
 } from "~/components/ui/atoms/table";
-import { Loader } from "~/components/ui/atoms/loader";
-import { Card } from "~/components/ui/atoms/card";
+import AddProduct from "~/components/ui/molecules/addProduct";
 import { TableLoader } from "~/components/ui/molecules/tableLoader";
 import { useProducts } from "~/hooks/useProducts";
 
@@ -24,16 +24,23 @@ export function ProductsTable() {
 
   return (
     <Loader loading={isFetching} fallback={<TableLoader />}>
-      <div className="w-full">
-        <div className="flex items-center py-4">
-          <Input
-            placeholder="Filtre por nome"
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
+      <div className="w-full flex flex-col gap-2">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center px-2 border rounded-lg w-fit bg-input">
+            <Search size={14} />
+            <Input
+              placeholder="Filtre por nome"
+              value={
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("name")?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm !bg-transparent border-none shadow-none focus:!ring-0
+            "
+            />
+          </div>
+          <AddProduct />
         </div>
         <Card className="rounded-md border p-0">
           <Table internDivClassName="max-h-96">

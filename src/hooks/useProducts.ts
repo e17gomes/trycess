@@ -1,20 +1,19 @@
 "use client";
-import * as React from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-
-import { productManager } from "~/api/productsApi";
-import { productColumn } from "../app/(private)/dashboard/_components/products_column";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { type CreateProduct as BaseProduct } from "~/types/productsType";
+import * as React from "react";
 import toast from "react-hot-toast";
+import { productManager } from "~/api/productsApi";
 import { queryClient } from "~/lib/tanstack-query";
+import type { CreateProduct as BaseProduct } from "~/types/productsType";
+import { productColumn } from "../app/(private)/dashboard/_components/products_column";
 
 export const useProducts = () => {
   const [sorting, setSorting] = React.useState<SortingState>([]);

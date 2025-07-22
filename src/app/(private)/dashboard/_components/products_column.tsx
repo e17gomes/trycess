@@ -1,9 +1,13 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, Image as Image2, MoreHorizontal } from "lucide-react";
-
 import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+import type { ColumnDef } from "@tanstack/react-table";
+import {
+  ArrowUpDown,
+  Image as Image2,
+  InfoIcon,
+  MoreHorizontal,
+} from "lucide-react";
 import { Button } from "~/components/ui/atoms/button";
 import {
   DropdownMenu,
@@ -12,12 +16,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/atoms/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/atoms/tooltip";
 import { DeleteProductDialog } from "~/components/ui/molecules/deleteDialog";
 import { EditProductDialog } from "~/components/ui/molecules/editDialog";
 import ImageModal from "~/components/ui/molecules/imageModal";
-import { DeleteProductHandlerType } from "~/types/deleteProductType";
-import { EditProductHandlerType } from "~/types/editProductType";
-import { Product } from "~/types/productsType";
+import type { DeleteProductHandlerType } from "~/types/deleteProductType";
+import type { EditProductHandlerType } from "~/types/editProductType";
+import type { Product } from "~/types/productsType";
 
 type productsColumProps = {
   editProduct: EditProductHandlerType;
@@ -53,6 +62,7 @@ export function productColumn({
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="w-full text-center"
           >
             Preços
             <ArrowUpDown />
@@ -60,34 +70,65 @@ export function productColumn({
         );
       },
       cell: ({ row }) => (
-        <div className="lowercase">{row?.original?.price}</div>
+        <div className="w-full text-center capitalize">
+          {row?.original?.price}
+        </div>
       ),
     },
     {
       accessorKey: "stock",
-      header: () => <div className="text-right">Em estoque</div>,
+      header: () => <div className="text-center">Em estoque</div>,
       cell: ({ row }) => {
+        let closeToEnd = "";
+
+        switch (true) {
+          case row.original.stock > 10:
+            closeToEnd = "bg-green-400/60 dark:bg-green-400/90";
+            break;
+          case row.original.stock > 5:
+            closeToEnd = "bg-yellow-400/60 dark:bg-yellow-400/90";
+            break;
+          case row.original.stock <= 5:
+            closeToEnd = "bg-red-400/80 dark:bg-red-400/90";
+            break;
+          default:
+            closeToEnd = "bg-muted/60 dark:bg-muted-foreground/90";
+        }
+
         return (
-          <div className="text-right font-medium">{row.original.stock}</div>
+          <div
+            className={`text-center m-auto w-3/6 rounded font-medium text-white ${closeToEnd}`}
+          >
+            {row.original.stock}
+          </div>
         );
       },
     },
     {
       accessorKey: "category",
-      header: () => <div className="text-right">Categoria</div>,
+      header: () => <div className="text-center">Categoria</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-right font-medium">{row.original?.category}</div>
+          <div className="text-center font-medium border rounded-md w-4/6 p-1 m-auto ">
+            {row.original?.category}
+          </div>
         );
       },
     },
     {
       accessorKey: "description",
-      header: () => <div className="text-right">Descrição</div>,
+      header: () => <div className="text-center">Descrição</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-right font-medium">
-            {row.original.description}
+          <div className="flex justify-center">
+            <Tooltip>
+              <TooltipTrigger className="cursor-pointer">
+                <InfoIcon size={20} />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="m-auto">{row.original.description}</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         );
       },

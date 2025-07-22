@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { LoaderIcon } from "react-hot-toast";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogTitle,
+  DialogTrigger,
 } from "../atoms/dialog";
 import { Loader } from "../atoms/loader";
-import { useState } from "react";
 
 type ImageModalProps = {
   src: string;
@@ -24,7 +24,10 @@ const ImageModal = ({ src, alt }: ImageModalProps) => {
           className="h-12 w-12 rounded-full cursor-pointer"
         />
       </DialogTrigger>
-      <DialogContent className="flex items-center justify-center">
+      <DialogContent
+        className="flex items-center justify-center"
+        showCloseButton={false}
+      >
         <DialogTitle className="sr-only">{alt}</DialogTitle>
         <Loader
           loading={loading}

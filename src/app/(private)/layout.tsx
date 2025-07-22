@@ -8,10 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="m-4 mb-0 min-h-[97dvh]">
+    <div className="mx-4 min-h-screen mb-0 flex flex-col">
       <Header />
-      {children}
-      <footer className="p-8 mt-4 border-t flex gap-4 bottom-0 w-full justify-between text-accent-foreground/70">
+      <div className="flex flex-col flex-grow flex-1">{children}</div>
+      <footer className="p-4 mt-4 border-t flex gap-4 bottom-0 w-full justify-between text-accent-foreground/70">
         <span className="flex items-center gap-1">
           Trycess <Copyright size={12} />
         </span>

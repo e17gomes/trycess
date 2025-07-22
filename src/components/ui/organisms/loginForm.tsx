@@ -1,8 +1,12 @@
 "use client";
-import { cn } from "~/lib/utils";
+import { AtSign, Eye, EyeOff, Lock, Mail, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "~/components/ui/atoms/button";
 import { Input } from "~/components/ui/atoms/input";
 import { useLogin } from "~/hooks/useLogin";
+import { cn } from "~/lib/utils";
+import { Card, CardContent } from "../atoms/card";
 import {
   Form,
   FormControl,
@@ -11,10 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../atoms/form";
-import { Card, CardDescription, CardTitle } from "../atoms/card";
-import { useState } from "react";
-import { AtSign, Eye, EyeOff, Lock, Stars } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
@@ -32,9 +32,9 @@ export function LoginForm({
         {...props}
       >
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Entre na sua conta</h1>
+          <h1 className="text-2xl font-bold">Acesse ao sistema</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Insira o seu email e senha abaixo
+            Insira o suas credenciais para acessar o sistema.
           </p>
         </div>
         <div className="flex flex-col gap-6">
@@ -44,7 +44,10 @@ export function LoginForm({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="flex items-center gap-1">
+                    {" "}
+                    <AtSign size={18} /> Email
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Insira aqui seu email" {...field} />
                   </FormControl>
@@ -60,7 +63,12 @@ export function LoginForm({
               render={({ field }) => {
                 return (
                   <FormItem>
-                    <FormLabel htmlFor="password">Senha</FormLabel>
+                    <FormLabel
+                      htmlFor="password"
+                      className="flex items-center gap-1"
+                    >
+                      <Lock size={18} /> Senha
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
@@ -108,19 +116,25 @@ export function LoginForm({
             Registre-se
           </Button>
         </div>
-        <Card className="bg-chart-1 p-4 w-64 ">
-          <CardTitle className="flex gap-1 items-center">
-            <Stars /> Credenciais para teste:
-          </CardTitle>
-          <CardDescription className="text-card-foreground flex flex-col gap-1">
-            <span className="flex gap-1 items-center">
-              <AtSign size={20} />
-              user@test.com
-            </span>
-            <span className="flex gap-1 items-center">
-              <Lock size={20} /> password
-            </span>
-          </CardDescription>
+        <Card className="bg-slate-800/30 border-slate-700">
+          <CardContent>
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="h-4 w-4 text-blue-400" />
+              <span className="text-sm font-medium text-accent-foreground">
+                Credenciais de Demonstração
+              </span>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2 text-accent-foreground">
+                <Mail className="h-3 w-3" />
+                <span className="font-mono">user@test.com</span>
+              </div>
+              <div className="flex items-center gap-2 text-accent-foreground">
+                <Lock className="h-3 w-3" />
+                <span className="font-mono">password</span>
+              </div>
+            </div>
+          </CardContent>
         </Card>
       </form>
     </Form>

@@ -1,4 +1,4 @@
-import { Product } from "~/types/productsType";
+import type { Product } from "~/types/productsType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
 export let products: Product[] = [

@@ -3,10 +3,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { PlusCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { productManager } from "~/api/productsApi";
 import { queryClient } from "~/lib/tanstack-query";
 import { createProductSchema } from "~/schemas/productSchema";
-import { CreateProduct, Product } from "~/types/productsType";
+import type { CreateProduct, Product } from "~/types/productsType";
+import { masks } from "~/utils/inputMasks";
+import { resetOnCloseHandler } from "~/utils/resetCloseHandler";
 import { Button } from "../atoms/button";
 import {
   Dialog,
@@ -25,9 +28,6 @@ import {
   FormMessage,
 } from "../atoms/form";
 import { Input } from "../atoms/input";
-import { resetOnCloseHandler } from "~/utils/resetCloseHandler";
-import { masks } from "~/utils/inputMasks";
-import toast from "react-hot-toast";
 
 const AddProduct = () => {
   const createProductForm = useForm<CreateProduct>({
@@ -68,7 +68,11 @@ const AddProduct = () => {
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
-        <Button className="m-4 rounded-full p-6 text-lg" size={"lg"}>
+        <Button
+          className=" mx-7 p-4 text- w-fit px-8"
+          size={"sm"}
+          variant={"outline"}
+        >
           <PlusCircle /> Adicionar novo produto
         </Button>
       </DialogTrigger>

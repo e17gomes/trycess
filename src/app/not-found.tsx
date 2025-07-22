@@ -1,5 +1,7 @@
 "use client";
 
+import { AlertCircle, ArrowLeft, RefreshCw } from "lucide-react";
+import Link from "next/link";
 import { Button } from "~/components/ui/atoms/button";
 import {
   Card,
@@ -9,8 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/atoms/card";
-import { AlertCircle, ArrowLeft, RefreshCw } from "lucide-react";
-import Link from "next/link";
 
 interface ErrorPageProps {
   error: Error & { digest?: string };

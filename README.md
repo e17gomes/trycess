@@ -94,7 +94,9 @@ Estrutura do projeto
 - Uso do Turbopack para melhorar a experiência de desenvolvimento com Hot Module Replacement ultra rápida.
 
 ---
- 🌟 Feat's Adicionais
+
+🌟 Feat's Adicionais
+
 - Feat de pagina de usuáirio
 - Feat de pagina de registro (para futuras integrações)
 - Feat Zoom Image, quando clicada a imagem é aberta em um modal para melhor visualização.

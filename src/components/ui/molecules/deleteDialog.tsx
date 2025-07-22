@@ -10,8 +10,8 @@ import {
   DialogTrigger,
 } from "~/components/ui/atoms/dialog";
 import { DropdownMenuItem } from "~/components/ui/atoms/dropdown-menu";
-import { DeleteProductHandlerType } from "~/types/deleteProductType";
-import { Product } from "~/types/productsType";
+import type { DeleteProductHandlerType } from "~/types/deleteProductType";
+import type { Product } from "~/types/productsType";
 
 type DeleteProductDialogProps = {
   product: Product;
