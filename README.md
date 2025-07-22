@@ -1,113 +1,118 @@
-TRYCESS - Gerenciador de Produtos
+# 🚀 TRYCESS - Gerenciador de Produtos
 
-Projeto criado com Next.js + Tailwind CSS para gerenciar produtos de forma simples e eficiente.  
-Utiliza tecnologias modernas para garantir performance, escalabilidade e uma ótima experiência de desenvolvimento.
-
----
-
-Tecnologias e Porquês
-
-| Tecnologia                      | Propósito / Justificativa                                                                               |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Next.js (v15.4.1)**           | Framework React para SSR/SSG, otimizações nativas, rotas simplificadas, Turbopack para dev mais rápido. |
-| **React (v19.1.0)**             | Biblioteca principal para construir UI reativas e componentes.                                          |
-| **Tailwind CSS (v4)**           | Framework utilitário para estilização rápida, responsiva e customizável.                                |
-| **Lucide-react**                | Biblioteca de ícones moderna, leve e flexível para UI.                                                  |
-| **@tanstack/react-query**       | Gerenciamento de estado assíncrono e cache de dados da API (fetching).                                  |
-| **@tanstack/react-table**       | Biblioteca para tabelas poderosas, personalizáveis e performáticas.                                     |
-| **react-hook-form**             | Facilita a criação e validação de formulários com performance otimizada.                                |
-| **zod**                         | Validação de schemas para garantir integridade e segurança dos dados.                                   |
-| **@radix-ui**                   | Componentes acessíveis e prontos para UI complexa (Dialog, Dropdown).                                   |
-| **next-themes**                 | Controle de temas (dark/light) de forma simples e integrada ao Next.js.                                 |
-| **eslint + eslint-config-next** | Análise estática para manter a qualidade e padrões no código.                                           |
-| **tailwind-merge**              | Mescla classes Tailwind evitando conflitos e duplicações.                                               |
-| **tw-animate-css**              | Biblioteca para animações CSS compatíveis com Tailwind.                                                 |
-| **typescript**                  | Tipagem estática para maior segurança e robustez do código.                                             |
+Sistema moderno de gerenciamento de produtos, criado com **Next.js**, **Tailwind CSS** e tecnologias atuais, garantindo **performance**, **escalabilidade** e **ótima DX (Developer Experience)** com **Turbopack**.
 
 ---
 
-Como instalar
+## 🧰 Tecnologias Utilizadas
 
-1. Clone o repositório:
+| Tecnologia                      | Propósito                                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **Next.js (v15.4.1)**           | Framework React com SSR/SSG, rotas automáticas e Turbopack para desenvolvimento ultra rápido.    |
+| **React (v19.1.0)**             | Biblioteca principal para criação de interfaces reativas.                                         |
+| **Tailwind CSS (v4)**           | Framework utilitário para estilização rápida e responsiva.                                        |
+| **Lucide-react**                | Ícones modernos, leves e flexíveis para UI.                                                       |
+| **@tanstack/react-query**       | Fetch, cache e sincronização de dados assíncronos.                                                |
+| **@tanstack/react-table**       | Tabelas poderosas, customizáveis e performáticas.                                                 |
+| **react-hook-form**             | Formulários performáticos com controle total.                                                     |
+| **zod**                         | Schema validation segura e tipada para formulários.                                               |
+| **@radix-ui**                   | Componentes acessíveis e sofisticados para UI complexa.                                           |
+| **next-themes**                 | Controle de temas (dark/light) com integração simples ao Next.js.                                 |
+| **tailwind-merge**              | Evita conflitos e duplicações de classes Tailwind.                                                |
+| **tw-animate-css**              | Animações compatíveis e integradas ao Tailwind CSS.                                               |
+| **eslint + eslint-config-next** | Análise estática de código e padrões da equipe Next.js.                                           |
+| **biome**                       | Linter + formatter moderno (substituto leve do ESLint + Prettier).                               |
+| **TypeScript**                  | Tipagem estática para maior robustez, segurança e autocompletes inteligentes.                    |
 
+---
+
+## 📦 Instalação
+
+```bash
 git clone https://github.com/e17gomes/trycess.git
 cd trycess
 
-2. Instale as dependências:
-
-npm install
-
-# ou
-
-yarn
-
-# ou
-
+# Instale as dependências
 pnpm install
+# ou: yarn install / npm install
+```
 
 ---
 
-Como rodar a aplicação
+## ▶ Como Rodar
 
-Para rodar o ambiente de desenvolvimento com Turbopack (mais rápido):
+### 🧪 Ambiente de Desenvolvimento
 
-npm run dev
-
-# ou
-
-yarn dev
-
-# ou
-
+```bash
 pnpm dev
+# ou: npm run dev / yarn dev
+```
 
-Acesse em: http://localhost:3000
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-Para build e produção:
+### 🚀 Produção
 
-npm run build
-npm start
-
-# ou yarn build e yarn start
-
----
-
-Decisões importantes do projeto
-
-Campos do Produto
-
-- Nome: obrigatório, texto simples
-- Descrição: obrigatório, texto para detalhar o produto
-- Preço: número positivo, pode aceitar valores decimais
-- Estoque: número inteiro, não negativo
-- Imagem: opcional, texto
-- Categoria: obrigatório, texto simples
-
-Esses campos foram escolhidos para cobrir o básico de um sistema de gerenciamento de estoque e vendas, garantindo validação no frontend com zod e react-hook-form.
-
-Estrutura do projeto
-
-- Componentes (Botões, Cards) para reutilização
-- Contexto para estado global (autenticação, tema)
-- React Query para cache e sincronização dos dados do backend simulado
-- Validações de formulário com Zod
-- Uso do Turbopack para melhorar a experiência de desenvolvimento com Hot Module Replacement ultra rápida.
+```bash
+pnpm build
+pnpm start
+# ou: npm run build / yarn build
+```
 
 ---
 
-🌟 Feat's Adicionais
+## 📋 Campos do Produto
 
-- Feat de pagina de usuáirio
-- Feat de pagina de registro (para futuras integrações)
-- Feat Zoom Image, quando clicada a imagem é aberta em um modal para melhor visualização.
-- Feat Filtrar produto por nome
-- Feat Alterar temas da aplicação (dark mode, ligth mode)
-- Feat Paginação de tabela
+- **Nome**: obrigatório  
+- **Descrição**: obrigatória  
+- **Preço**: número positivo, aceita decimais  
+- **Estoque**: número inteiro, mínimo 0  
+- **Imagem**: opcional (texto ou URL)  
+- **Categoria**: obrigatória  
 
-Licença
-
-MIT License
+> Validados com **Zod** + **React Hook Form**
 
 ---
 
-Feito com ❤️ por https://github.com/e17gomes
+## 🧱 Estrutura e Decisões
+
+- 🔁 React Query para controle e cache de dados  
+- ⚙️ Context API para autenticação e tema  
+- 🧩 Componentes reutilizáveis (botões, modais, etc.)  
+- ✅ Validações robustas com Zod  
+- ⚡ Turbopack para hot reload e build rápidos  
+- 🎯 Biome para linting e formatação integrados  
+
+---
+
+## 🌟 Funcionalidades Extras
+
+- 👤 Página de Usuário  
+- 📝 Página de Registro (para futuras integrações)  
+- 🔍 Filtro de produtos por nome  
+- 🌓 Alternância de tema (dark/light mode)  
+- 🔎 Modal com zoom da imagem do produto  
+- 📄 Paginação de tabela  
+
+---
+
+## 🔧 Scripts Úteis
+
+```bash
+pnpm dev       # Inicia o ambiente de desenvolvimento
+pnpm build     # Gera a build de produção
+pnpm start     # Roda o projeto em modo produção
+pnpm lint      # Análise de código com Biome/ESLint
+pnpm format    # Formata o código com Biome
+```
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **MIT License**.
+
+---
+
+## 👨‍💻 Autor
+
+Feito com ❤️ por [@e17gomes](https://github.com/e17gomes)
