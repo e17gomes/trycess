@@ -1,5 +1,6 @@
-import { Button } from "~/components/ui/atoms/button";
 import { Save } from "lucide-react";
+import type { UseFormReturn } from "react-hook-form";
+import { Button } from "~/components/ui/atoms/button";
 import {
   Form,
   FormControl,
@@ -9,13 +10,18 @@ import {
   FormMessage,
 } from "~/components/ui/atoms/form";
 import { Input } from "~/components/ui/atoms/input";
-import { masks } from "~/utils/inputMasks";
-import { EditProductHandlerType } from "~/types/editProductType";
-import { Product } from "~/types/productsType";
-import { UseFormReturn } from "react-hook-form";
-import { Textarea } from "../atoms/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../atoms/select";
 import { categories } from "~/data/categories";
+import type { EditProductHandlerType } from "~/types/editProductType";
+import type { Product } from "~/types/productsType";
+import { masks } from "~/utils/inputMasks";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../atoms/select";
+import { Textarea } from "../atoms/textarea";
 
 type FormFieldsEditProductProps = {
   editFormHandler: EditProductHandlerType;
@@ -122,7 +128,7 @@ export const FormFieldsEditProduct = ({
                 <FormLabel>Categoria</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
-                    <SelectTrigger className="w-full"> 
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Selecione a categoria" />
                     </SelectTrigger>
                   </FormControl>

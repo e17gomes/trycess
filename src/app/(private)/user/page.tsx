@@ -2,12 +2,12 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   ArrowLeftIcon,
-  Mail,
-  UserCircle,
+  DollarSign,
   Hash,
+  Mail,
   Package,
   PackageOpen,
-  DollarSign,
+  UserCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { productManager } from "~/api/productsApi";

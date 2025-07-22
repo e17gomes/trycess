@@ -1,8 +1,11 @@
 "use client";
+import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/atoms/button";
 import { Input } from "~/components/ui/atoms/input";
+import { useRegister } from "~/hooks/useRegister";
+import { cn } from "~/lib/utils";
 import {
   Form,
   FormControl,
@@ -11,9 +14,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../atoms/form";
-import { Eye, EyeOff } from "lucide-react";
-import { useRegister } from "~/hooks/useRegister";
-import { useRouter } from "next/navigation";
 
 export function RegisterForm({
   className,

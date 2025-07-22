@@ -1,8 +1,12 @@
 "use client";
-import { cn } from "~/lib/utils";
+import { AtSign, Eye, EyeOff, Lock, Mail, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "~/components/ui/atoms/button";
 import { Input } from "~/components/ui/atoms/input";
 import { useLogin } from "~/hooks/useLogin";
+import { cn } from "~/lib/utils";
+import { Card, CardContent } from "../atoms/card";
 import {
   Form,
   FormControl,
@@ -11,10 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../atoms/form";
-import { Card, CardContent, CardDescription, CardTitle } from "../atoms/card";
-import { useState } from "react";
-import { AtSign, Eye, EyeOff, Lock, Mail, Sparkles, Stars } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
@@ -44,7 +44,10 @@ export function LoginForm({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center gap-1"> <AtSign size={18}/> Email</FormLabel>
+                  <FormLabel className="flex items-center gap-1">
+                    {" "}
+                    <AtSign size={18} /> Email
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Insira aqui seu email" {...field} />
                   </FormControl>
@@ -60,7 +63,12 @@ export function LoginForm({
               render={({ field }) => {
                 return (
                   <FormItem>
-                    <FormLabel htmlFor="password" className="flex items-center gap-1"><Lock size={18}/> Senha</FormLabel>
+                    <FormLabel
+                      htmlFor="password"
+                      className="flex items-center gap-1"
+                    >
+                      <Lock size={18} /> Senha
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
@@ -108,24 +116,26 @@ export function LoginForm({
             Registre-se
           </Button>
         </div>
- <Card className="bg-slate-800/30 border-slate-700">
-            <CardContent >
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="h-4 w-4 text-blue-400" />
-                <span className="text-sm font-medium text-accent-foreground">Credenciais de Demonstração</span>
+        <Card className="bg-slate-800/30 border-slate-700">
+          <CardContent>
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="h-4 w-4 text-blue-400" />
+              <span className="text-sm font-medium text-accent-foreground">
+                Credenciais de Demonstração
+              </span>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2 text-accent-foreground">
+                <Mail className="h-3 w-3" />
+                <span className="font-mono">user@test.com</span>
               </div>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2 text-accent-foreground">
-                  <Mail className="h-3 w-3" />
-                  <span className="font-mono">user@test.com</span>
-                </div>
-                <div className="flex items-center gap-2 text-accent-foreground">
-                  <Lock className="h-3 w-3" />
-                  <span className="font-mono">password</span>
-                </div>
+              <div className="flex items-center gap-2 text-accent-foreground">
+                <Lock className="h-3 w-3" />
+                <span className="font-mono">password</span>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
       </form>
     </Form>
   );

@@ -1,1 +1,7 @@
-export const categories = ["Eletrônicos", "Informática", "Wearables", "Utilidades", "Outra"]
+export const categories = [
+  "Eletrônicos",
+  "Informática",
+  "Wearables",
+  "Utilidades",
+  "Outra",
+];

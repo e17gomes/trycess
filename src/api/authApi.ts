@@ -1,5 +1,5 @@
 import { validCredentials } from "~/data/mockUsers";
-import { User } from "~/types/userType";
+import type { User } from "~/types/userType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
 let loggedInUser: User | null = null;
@@ -27,6 +27,7 @@ export const authManager = {
 
   async logout(): Promise<void> {
     await fakeRequestTime;
+    // biome-ignore lint/suspicious/noDocumentCookie: <>
     document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     loggedInUser = null;

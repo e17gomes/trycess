@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { fakeRequestTime } from "~/utils/fakeRequestTime";
-import { authManager } from "~/api/authApi";
 import z from "zod";
-import { useRouter } from "next/navigation";
+import { authManager } from "~/api/authApi";
+import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
 export const useRegister = () => {
   const router = useRouter();

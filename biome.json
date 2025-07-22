@@ -1,0 +1,66 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json", // Versão atualizada do schema
+  "project": {
+    "kind": ["react", "next", "tailwind"] // Ativa domínio adequado :contentReference[oaicite:1]{index=1}
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "formatWithErrors": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noAccessKey": "error",
+        "noAriaHiddenOnFocusable": "error",
+        "noSvgWithoutTitle": "error",
+        "useAltText": "error",
+        "useAnchorContent": "error",
+        "useValidAriaProps": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "error"
+      },
+      "style": {
+        "noImplicitBoolean": "error",
+        "noParameterAssign": "error",
+        "useBlockStatements": "error",
+        "useShorthandArrayType": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noImplicitReturns": "error"
+      },
+      "complexity": {
+        "noStaticOnlyClass": "error"
+      },
+      "nursery": {
+        "noUselessFragments": "error",
+        "useJsxKeyInSpread": "error"
+      }
+    }
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecorators": true
+    },
+    "globals": ["React", "JSX"]
+  },
+  "files": {
+    "include": ["**/*.{js,jsx,ts,tsx,json}"],
+    "ignore": ["node_modules/**", "dist/**", "build/**", ".next/**"]
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
+}

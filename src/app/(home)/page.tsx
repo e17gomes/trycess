@@ -1,7 +1,7 @@
+import { CurlyBraces, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/atoms/button";
 import { Card } from "~/components/ui/atoms/card";
-import { CurlyBraces, ExternalLink, Github } from "lucide-react";
 
 export default function Home() {
   return (
