@@ -67,8 +67,28 @@ export function productColumn({
       accessorKey: "stock",
       header: () => <div className="text-right">Em estoque</div>,
       cell: ({ row }) => {
+        let closeToEnd = "";
+
+        switch (true) {
+          case row.original.stock > 10:
+            closeToEnd = "bg-green-400/60 dark:bg-green-400/90"; 
+            break;
+          case row.original.stock > 5:
+            closeToEnd = "bg-yellow-400/60 dark:bg-yellow-400/90"; 
+            break;
+          case row.original.stock <= 5:
+            closeToEnd = "bg-red-400/80 dark:bg-red-400/90"; 
+            break;
+          default:
+            closeToEnd = "bg-muted/60 dark:bg-muted-foreground/90"; 
+        }
+
         return (
-          <div className="text-right font-medium">{row.original.stock}</div>
+          <div
+            className={`text-center w-3/6 rounded font-medium text-white ${closeToEnd}`}
+          >
+            {row.original.stock}
+          </div>
         );
       },
     },

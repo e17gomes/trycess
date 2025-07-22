@@ -24,7 +24,7 @@ const ImageModal = ({ src, alt }: ImageModalProps) => {
           className="h-12 w-12 rounded-full cursor-pointer"
         />
       </DialogTrigger>
-      <DialogContent className="flex items-center justify-center">
+      <DialogContent className="flex items-center justify-center" showCloseButton={false}>
         <DialogTitle className="sr-only">{alt}</DialogTitle>
         <Loader
           loading={loading}

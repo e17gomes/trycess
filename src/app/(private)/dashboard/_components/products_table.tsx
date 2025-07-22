@@ -28,7 +28,7 @@ export function ProductsTable() {
     <Loader loading={isFetching} fallback={<TableLoader />}>
       <div className="w-full flex flex-col gap-2">
         <div className="flex justify-between items-center">
-        <div className="flex items-center px-2 border rounded-lg w-fit">
+        <div className="flex items-center px-2 border rounded-lg w-fit bg-input">
           <Search size={14} />
           <Input
             placeholder="Filtre por nome"
@@ -36,7 +36,7 @@ export function ProductsTable() {
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm border-none shadow-none focus:!ring-0
+            className="max-w-sm !bg-transparent border-none shadow-none focus:!ring-0
             "
             />
           </div>
