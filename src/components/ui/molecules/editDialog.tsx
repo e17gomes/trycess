@@ -13,6 +13,7 @@ import { updateProductSchema } from "~/schemas/productSchema";
 import type { EditProductHandlerType } from "~/types/editProductType";
 import type { Product } from "~/types/productsType";
 import { FormFieldsEditProduct } from "./formEditProduct";
+import { resetOnCloseHandler } from "~/utils/resetCloseHandler";
 
 type EditProductDialogProps = {
   product: Product;
@@ -42,13 +43,7 @@ export const EditProductDialog = ({
   };
 
   return (
-    <Dialog
-      onOpenChange={(open) => {
-        if (open) {
-          editProductForm.reset(product);
-        }
-      }}
-    >
+    <Dialog onOpenChange={resetOnCloseHandler(editProductForm)}>
       <DialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pen className="mr-2 h-4 w-4" />

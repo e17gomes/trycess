@@ -1,5 +1,4 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { PlusCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -28,6 +27,10 @@ import {
   FormMessage,
 } from "../atoms/form";
 import { Input } from "../atoms/input";
+import { Textarea } from "../atoms/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../atoms/select";
+import { categories } from "~/data/categories";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const AddProduct = () => {
   const createProductForm = useForm<CreateProduct>({
@@ -65,6 +68,7 @@ const AddProduct = () => {
     },
   });
 
+  
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
@@ -80,153 +84,154 @@ const AddProduct = () => {
         <DialogHeader>
           <DialogTitle>Insira as informações do produto</DialogTitle>
         </DialogHeader>
-        <Form {...createProductForm}>
-          <form
-            onSubmit={createProductForm.handleSubmit((data) => {
+         <Form {...createProductForm}>
+      <form
+        onSubmit={ createProductForm.handleSubmit((data) => {
               createProduct(data);
             })}
-            className=" grid grid-cols-2 gap-4"
-          >
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Insira o nome do produto"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Preço</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Insira o preço do produto"
-                        value={field.value ?? ""}
-                        onChange={(e) =>
-                          field.onChange(masks.money(e.target.value ?? ""))
-                        }
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="stock"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Estoque</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Insira a quantidade disponivel"
-                        type="number"
-                        value={field?.value ?? ""}
-                        onChange={(e) =>
-                          field.onChange(Number(e.target.value ?? ""))
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="category"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Categoria</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Insira a categoria do produto"
-                        value={field.value}
-                        onChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="imageUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Url da imagem</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Insira a url da imagem"
-                        type="url"
-                        value={field.value}
-                        onChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div>
-              <FormField
-                control={createProductForm.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Descrição</FormLabel>
-                    <FormControl>
-                      <Input
-                        maxLength={50}
-                        placeholder="Insira a descrição"
-                        value={field.value}
-                        onChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <Button
-              className="col-span-2 flex items-center gap-2"
-              disabled={isPending}
-            >
-              Adicionar produto <PlusCircle />{" "}
-            </Button>
-          </form>
-        </Form>
+        className=" flex flex-col gap-4"
+      >
+        <div className="flex items-center gap-4">
+          <FormField
+            control={createProductForm.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome</FormLabel>
+                <FormControl>
+                  <Input placeholder="Insira o nome do produto" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={createProductForm.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Preço</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Insira o preço do produto"
+                    value={field.value ?? ""}
+                    onChange={(e) =>
+                      field.onChange(masks.money(e.target.value ?? ""))
+                    }
+                    onBlur={field.onBlur}
+                    name={field.name}
+                    ref={field.ref}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex gap-4">
+          <FormField
+            control={createProductForm.control}
+            name="stock"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Estoque</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Insira a quantidade disponivel"
+                    type="number"
+                    value={field?.value ?? ""}
+                    onChange={(e) =>
+                      field.onChange(Number(e.target.value ?? ""))
+                    }
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={createProductForm.control}
+            name="category"
+            render={({ field }) => (
+              <FormItem className="flex flex-col flex-1">
+                <FormLabel>Categoria</FormLabel>
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Selecione a categoria" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div>
+          <FormField
+            control={createProductForm.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Url da imagem</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Insira a url da imagem"
+                    type="url"
+                    value={field.value}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                    ref={field.ref}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div>
+          <FormField
+            control={createProductForm.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descrição</FormLabel>
+                <FormControl>
+                  <Textarea
+                    maxLength={50}
+                    placeholder="Insira a descrição"
+                    value={field.value}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                    ref={field.ref}
+                    className="resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button
+          className="col-span-2 flex items-center gap-2"
+          disabled={isPending}
+        >
+          Adicionar produto <PlusCircle />{" "}
+        </Button>
+      </form>
+    </Form>
+
       </DialogContent>
     </Dialog>
   );
