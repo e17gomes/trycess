@@ -1,4 +1,4 @@
-import type { Product } from "~/types/productsType";
+import type { CreateProduct, Product } from "~/types/productsType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
 export let products: Product[] = [
@@ -54,10 +54,10 @@ export const productManager = {
   },
   async getProductById(id: number) {
     await fakeRequestTime;
-    return products.find((product) => product.id === id)!;
+    return products.find((product) => product.id === id) ?? "";
   },
 
-  async createProduct(newProductData: Omit<Product, "id">) {
+  async createProduct(newProductData: CreateProduct) {
     await fakeRequestTime;
     const newProduct = { ...newProductData, id: products.length + 1 };
 
@@ -68,7 +68,7 @@ export const productManager = {
   async updateProduct(id: number, data: Partial<Omit<Product, "id">>) {
     await fakeRequestTime;
     products = products.map((p) => (p.id === id ? { ...p, ...data } : p));
-    return products.find((p) => p.id === id)!;
+    return products.find((p) => p.id === id) ?? "";
   },
   async deleteProduct(id: number) {
     await fakeRequestTime;

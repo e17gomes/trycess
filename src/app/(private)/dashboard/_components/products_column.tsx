@@ -43,7 +43,9 @@ export function productColumn({
       header: "Itens",
       cell: ({ row }) =>
         row.original.imageUrl ? (
+          <div className="w-12 ">
           <ImageModal src={row.original.imageUrl} alt={row.original.name} />
+          </div>
         ) : (
           <div className="bg-sidebar-accent-foreground rounded-full h-12 w-12 flex items-center">
             <Image2 className="text-accent m-auto" />
@@ -53,7 +55,10 @@ export function productColumn({
     {
       accessorKey: "name",
       header: "Nome",
-      cell: ({ row }) => <div className="capitalize">{row.original.name}</div>,
+      cell: ({ row }) => <div className="capitalize flex flex-col">
+        <span>{row.original.name}</span>
+        <span className="text-muted-foreground">ID: {row.original.id}</span>
+        </div>,
     },
     {
       accessorKey: "price",
@@ -82,14 +87,17 @@ export function productColumn({
         let closeToEnd = "";
 
         switch (true) {
-          case row.original.stock > 10:
-            closeToEnd = "bg-green-400/60 dark:bg-green-400/90";
+          case row.original.stock > 20:
+            closeToEnd = "bg-blue-400/60 dark:bg-blue-200 border border-blue-500 text-blue-800";
+            break;
+          case row.original.stock >= 10:
+            closeToEnd = "bg-green-400/60 dark:bg-green-200 border border-green-500 text-green-800";
             break;
           case row.original.stock > 5:
-            closeToEnd = "bg-yellow-400/60 dark:bg-yellow-400/90";
+            closeToEnd = "bg-yellow-400/60 dark:bg-yellow-200 border border-yellow-500 text-yellow-700";
             break;
           case row.original.stock <= 5:
-            closeToEnd = "bg-red-400/80 dark:bg-red-400/90";
+            closeToEnd = "bg-red-400/80 dark:bg-red-200 border border-red-400 text-red-700";
             break;
           default:
             closeToEnd = "bg-muted/60 dark:bg-muted-foreground/90";
@@ -97,7 +105,7 @@ export function productColumn({
 
         return (
           <div
-            className={`text-center m-auto w-3/6 rounded font-medium text-white ${closeToEnd}`}
+            className={`text-center m-auto w-2/6 rounded-xl font-medium text-accent-foreground cursor-default ${closeToEnd}`}
           >
             {row.original.stock}
           </div>
@@ -109,7 +117,7 @@ export function productColumn({
       header: () => <div className="text-center">Categoria</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-center font-medium border rounded-md w-4/6 p-1 m-auto ">
+          <div className="text-center font-medium border rounded-md w-4/6 p-1 m-auto cursor-default ">
             {row.original?.category}
           </div>
         );
@@ -140,6 +148,7 @@ export function productColumn({
         const product = row.original;
 
         return (
+        <div className="m-auto flex  justify-center w-full">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -147,7 +156,7 @@ export function productColumn({
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="center">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
               <DropdownMenuGroup>
                 <EditProductDialog
@@ -162,6 +171,7 @@ export function productColumn({
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         );
       },
     },
