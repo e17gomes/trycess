@@ -8,8 +8,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="mx-4 min-h-screen mb-0 flex flex-col">
+      <>
       <Header />
+      <div className="mx-4 min-h-screen mb-0 flex flex-col">
       <div className="flex flex-col flex-grow flex-1">{children}</div>
       <footer className="p-4 mt-4 border-t flex gap-4 bottom-0 w-full justify-between text-accent-foreground/70">
         <span className="flex items-center gap-1">
@@ -17,6 +18,6 @@ export default function RootLayout({
         </span>
         <span>More features coming soon</span>
       </footer>
-    </div>
+    </div></>
   );
 }
