@@ -4,15 +4,15 @@ import { SquareDashedKanban } from "lucide-react";
 
 export const Header = () => {
   return (
-    <div className="p-4 mb-4 flex items-center justify-between top-0 sticky border-b bg-white dark:bg-black/60 backdrop-blur-md ">
+    <div className="p-4 flex items-center justify-between top-0 sticky border-b shadow-md shadow-accent-foreground/10 backdrop-blur-2xl">
       <div>
         <h1
-          className="border-b px-4 text-2xl font-bold tracking-tight text-primary   transition-all duration-300 ease-in-out
-          hover:text-accent-foreground hover:shadow-md
+          className="border- px-4 text-2xl font-bold tracking-tight primary-foreground transition-all duration-300 ease-in-out
+          
           cursor-pointer flex items-center" 
         >
-          <SquareDashedKanban className="mr-2"/>
-          Trys
+          <SquareDashedKanban size={32} className="mr-2"/>
+          Try
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
             Cess
           </span>

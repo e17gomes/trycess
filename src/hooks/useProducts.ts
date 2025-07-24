@@ -12,7 +12,7 @@ import * as React from "react";
 import toast from "react-hot-toast";
 import { productManager } from "~/api/productsApi";
 import { queryClient } from "~/lib/tanstack-query";
-import type { CreateProduct as BaseProduct } from "~/types/productsType";
+import type { BaseProduct } from "~/types/productsType";
 import { productColumn } from "../app/(private)/dashboard/_components/products_column";
 
 export const useProducts = () => {

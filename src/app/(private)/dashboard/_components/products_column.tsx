@@ -47,8 +47,8 @@ export function productColumn({
           <ImageModal src={row.original.imageUrl} alt={row.original.name} />
           </div>
         ) : (
-          <div className="bg-sidebar-accent-foreground rounded-full h-12 w-12 flex items-center">
-            <Image2 className="text-accent m-auto" />
+          <div className="bg-sidebar-accent rounded-full h-12 w-12 flex items-center">
+            <Image2 className=" m-auto" />
           </div>
         ),
     },

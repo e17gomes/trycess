@@ -1,5 +1,6 @@
 "use client";
-import { Eye, EyeOff } from "lucide-react";
+
+import { AtSign, Eye, EyeOff, Lock, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "~/components/ui/atoms/button";
@@ -28,7 +29,7 @@ export function RegisterForm({
     <Form {...registerForm}>
       <form
         onSubmit={registerForm.handleSubmit((data) =>
-          handleSubmitRegister(data),
+          handleSubmitRegister(data)
         )}
         className={cn("flex flex-col gap-6 w-10/12 m-auto", className)}
         {...props}
@@ -46,15 +47,13 @@ export function RegisterForm({
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome Completo</FormLabel>
+                <FormLabel className="flex items-center gap-1">
+                  <User size={18} /> Nome Completo
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Seu nome completo"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -67,16 +66,14 @@ export function RegisterForm({
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="flex items-center gap-1">
+                  <AtSign size={18} /> Email
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="Insira seu email"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -87,76 +84,58 @@ export function RegisterForm({
           <FormField
             control={registerForm.control}
             name="password"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel htmlFor="password">Senha</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Insira sua senha"
-                        autoComplete="new-password"
-                        value={field.value}
-                        onChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                        className="pr-10"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                        className="absolute inset-y-0 right-2 flex items-center px-2 text-muted-foreground"
-                        aria-label={
-                          showPassword ? "Ocultar senha" : "Mostrar senha"
-                        }
-                        id="password-visibility-toggle"
-                      >
-                        {showPassword ? (
-                          <EyeOff size={18} />
-                        ) : (
-                          <Eye size={18} />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="password" className="flex items-center gap-1">
+                  <Lock size={18} /> Senha
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Insira sua senha"
+                      autoComplete="new-password"
+                      {...field}
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute inset-y-0 right-2 flex items-center px-2 text-muted-foreground"
+                      aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                      id="password-visibility-toggle"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
 
           <FormField
             control={registerForm.control}
             name="confirmPassword"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel htmlFor="confirmPassword">
-                    Confirmar Senha
-                  </FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        id="confirmPassword"
-                        type={"password"}
-                        placeholder="Confirme sua senha"
-                        autoComplete="new-password"
-                        value={field.value}
-                        onChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                        className="pr-10"
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="confirmPassword" className="flex items-center gap-1">
+                  <Lock size={18} /> Confirmar Senha
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirme sua senha"
+                    autoComplete="new-password"
+                    {...field}
+                    className="pr-10"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
 
@@ -164,11 +143,12 @@ export function RegisterForm({
           {isPending ? "Registrando..." : "Registrar"}
         </Button>
         <Button
-          variant={"ghost"}
+          variant="ghost"
           onClick={() => router.push("/login")}
           className="underline underline-offset-4 cursor-pointer"
+          type="button"
         >
-          Já tem conta? clique aqui.{" "}
+          Já tem conta? clique aqui.
         </Button>
       </form>
     </Form>

@@ -27,7 +27,7 @@ export const masks = {
     if (cleanValue === "") {
       return "";
     }
-    const number = parseFloat(cleanValue) / 100;
+    const number = Number.parseFloat(cleanValue) / 100;
 
     const formattedValue = new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -42,4 +42,10 @@ export const masks = {
     cleanValue = cleanValue.replace(",", ".");
     return cleanValue;
   },
+  parsePrice:  (priceString: string) => {
+  return Number.parseFloat(
+    priceString.replace("R$", "").replace(/\./g, "").replace(",", ".").trim()
+  );
+}
+
 };

@@ -1,4 +1,12 @@
-import { Save } from "lucide-react";
+import {
+  Save,
+  Tag,
+  DollarSign,
+  Package,
+  Boxes,
+  Image,
+  FileText,
+} from "lucide-react";
 import type { UseFormReturn } from "react-hook-form";
 import { Button } from "~/components/ui/atoms/button";
 import {
@@ -58,15 +66,18 @@ export const FormFieldsEditProduct = ({
     <Form {...editProductForm}>
       <form
         onSubmit={editProductForm.handleSubmit(onSubmit)}
-        className=" flex flex-col gap-4"
+        className="flex flex-col gap-4"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4">
           <FormField
             control={editProductForm.control}
             name="name"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nome</FormLabel>
+              <FormItem className="flex-1">
+                <FormLabel className="flex items-center gap-2">
+                  <Tag className="w-4 h-4" />
+                  Nome
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Insira o nome do produto" {...field} />
                 </FormControl>
@@ -74,13 +85,15 @@ export const FormFieldsEditProduct = ({
               </FormItem>
             )}
           />
-
           <FormField
             control={editProductForm.control}
             name="price"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Preço</FormLabel>
+              <FormItem className="flex-1">
+                <FormLabel className="flex items-center gap-2">
+                  <DollarSign className="w-4 h-4" />
+                  Preço
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Insira o preço do produto"
@@ -98,16 +111,20 @@ export const FormFieldsEditProduct = ({
             )}
           />
         </div>
+
         <div className="flex gap-4">
           <FormField
             control={editProductForm.control}
             name="stock"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Estoque</FormLabel>
+              <FormItem className="flex-1">
+                <FormLabel className="flex items-center gap-2">
+                  <Package className="w-4 h-4" />
+                  Estoque
+                </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Insira a quantidade disponivel"
+                    placeholder="Insira a quantidade disponível"
                     type="number"
                     value={field?.value ?? ""}
                     onChange={(e) =>
@@ -124,8 +141,11 @@ export const FormFieldsEditProduct = ({
             control={editProductForm.control}
             name="category"
             render={({ field }) => (
-              <FormItem className="flex flex-col flex-1">
-                <FormLabel>Categoria</FormLabel>
+              <FormItem className="flex-1">
+                <FormLabel className="flex items-center gap-2">
+                  <Boxes className="w-4 h-4" />
+                  Categoria
+                </FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full">
@@ -145,58 +165,64 @@ export const FormFieldsEditProduct = ({
             )}
           />
         </div>
-        <div>
-          <FormField
-            control={editProductForm.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Url da imagem</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Insira a url da imagem"
-                    type="url"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div>
-          <FormField
-            control={editProductForm.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Descrição</FormLabel>
-                <FormControl>
-                  <Textarea
-                    maxLength={50}
-                    placeholder="Insira a descrição"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
-                    className="resize-none"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+
+                <FormField
+          control={editProductForm.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center gap-2">
+                <Image className="w-4 h-4" />
+                Url da imagem
+              </FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Insira a url da imagem"
+                  type="url"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  name={field.name}
+                  ref={field.ref}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+                <FormField
+          control={editProductForm.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center gap-2">
+                <FileText className="w-4 h-4" />
+                Descrição
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  maxLength={50}
+                  placeholder="Insira a descrição"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  name={field.name}
+                  ref={field.ref}
+                  className="resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
         <Button
-          className="col-span-2 flex items-center gap-2"
-          disabled={editFormHandler.isPending}
+          className="flex items-center gap-2 w-full"
+          disabled={editFormHandler.isPending || !editProductForm.formState.isDirty }
         >
-          Salvar <Save />{" "}
+          Salvar <Save />
         </Button>
       </form>
     </Form>

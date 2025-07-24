@@ -12,8 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="p-4 min-h-screen flex flex-col items-center">
-      <h1 className="text-4xl font-extrabold">TRYCESS</h1>
+    <div className="p-4 min-h-screen flex flex-col items-center justify-center">
       {children}
     </div>
   );

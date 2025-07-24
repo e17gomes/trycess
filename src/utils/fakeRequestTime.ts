@@ -1,3 +1,3 @@
 export const fakeRequestTime = new Promise((response) =>
-  setTimeout(response, 100),
+  setTimeout(response, 4000),
 );

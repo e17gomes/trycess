@@ -1,8 +1,8 @@
 import type { UseMutationResult } from "@tanstack/react-query";
-import type { CreateProduct, Product } from "./productsType";
+import type { BaseProduct, Product } from "./productsType";
 
 export type EditProductHandlerType = UseMutationResult<
-  Product,
+  Product | undefined,
   Error,
-  { id: number; data: CreateProduct }
+  { id: number; data: BaseProduct }
 >;

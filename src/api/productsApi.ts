@@ -1,10 +1,10 @@
-import type { CreateProduct, Product } from "~/types/productsType";
+import type { BaseProduct, Product } from "~/types/productsType";
 import { fakeRequestTime } from "~/utils/fakeRequestTime";
 
 export let products: Product[] = [
   {
     id: 1,
-    price: "99.99",
+    price: "R$ 99,99",
     stock: 10,
     name: "Fone de Ouvido Bluetooth",
     description: "Fone de ouvido sem fio com alta qualidade de som.",
@@ -14,7 +14,7 @@ export let products: Product[] = [
   },
   {
     id: 2,
-    price: "49.9",
+    price: "R$ 49,99",
     stock: 25,
     name: "Mouse Gamer",
     description: "Mouse com iluminação RGB e alta precisão.",
@@ -22,7 +22,7 @@ export let products: Product[] = [
   },
   {
     id: 3,
-    price: "199.0",
+    price: "R$ 199,00",
     stock: 5,
     name: "Smartwatch",
     description: "Relógio inteligente com monitoramento de saúde.",
@@ -30,7 +30,7 @@ export let products: Product[] = [
   },
   {
     id: 4,
-    price: "29.9",
+    price: "R$ 29,99",
     stock: 50,
     name: "Copo Térmico",
     description: "Copo térmico para bebidas quentes e frias.",
@@ -38,7 +38,7 @@ export let products: Product[] = [
   },
   {
     id: 5,
-    price: "149.99",
+    price: "R$ 149,99",
     stock: 8,
     name: "Teclado Mecânico",
     description: "Teclado mecânico com switches azuis.",
@@ -54,10 +54,10 @@ export const productManager = {
   },
   async getProductById(id: number) {
     await fakeRequestTime;
-    return products.find((product) => product.id === id) ?? "";
+    return products.find((product) => product.id === id);
   },
 
-  async createProduct(newProductData: CreateProduct) {
+  async createProduct(newProductData: BaseProduct) {
     await fakeRequestTime;
     const newProduct = { ...newProductData, id: products.length + 1 };
 
@@ -65,10 +65,10 @@ export const productManager = {
     return newProduct;
   },
 
-  async updateProduct(id: number, data: Partial<Omit<Product, "id">>) {
+  async updateProduct(id: number, data: BaseProduct) {
     await fakeRequestTime;
     products = products.map((p) => (p.id === id ? { ...p, ...data } : p));
-    return products.find((p) => p.id === id) ?? "";
+    return products.find((p) => p.id === id);
   },
   async deleteProduct(id: number) {
     await fakeRequestTime;

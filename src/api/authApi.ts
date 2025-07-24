@@ -36,6 +36,7 @@ export const authManager = {
   async getCurrentUser(): Promise<Omit<User, "password"> | null> {
     await fakeRequestTime;
 
+    // biome-ignore lint/style/useBlockStatements: <explanation>
     if (!loggedInUser) return null;
 
     const { password: _, ...userWithoutPass } = loggedInUser;
