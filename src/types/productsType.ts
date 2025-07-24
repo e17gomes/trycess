@@ -5,4 +5,4 @@ import type {
 } from "~/schemas/productSchema";
 
 export type Product = z.infer<typeof updateProductSchema>;
-export type CreateProduct = z.infer<typeof createProductSchema>;
+export type BaseProduct = z.infer<typeof createProductSchema>;

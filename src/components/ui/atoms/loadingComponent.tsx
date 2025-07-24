@@ -1,18 +1,21 @@
 import type { JSX } from "react";
 
-type LoadingComponentProps = {
+type SpinnerProps = {
   className?: string;
+  size?: number;
 };
 
 export function LoadingComponent({
-  className,
-}: LoadingComponentProps): JSX.Element {
+  className = "",
+  size = 32,
+}: SpinnerProps): JSX.Element {
   return (
     <svg
-      className={`w-40 h-40 text-loading  m-auto ${className} animate-spin`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      className={`animate-spin text-primary ${className}`}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
+      fill="none"
       role="status"
       aria-label="loading"
     >

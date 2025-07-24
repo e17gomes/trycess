@@ -1,4 +1,5 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { PlusCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -6,34 +7,22 @@ import toast from "react-hot-toast";
 import { productManager } from "~/api/productsApi";
 import { queryClient } from "~/lib/tanstack-query";
 import { createProductSchema } from "~/schemas/productSchema";
-import type { CreateProduct, Product } from "~/types/productsType";
-import { masks } from "~/utils/inputMasks";
+import type { BaseProduct } from "~/types/productsType";
 import { resetOnCloseHandler } from "~/utils/resetCloseHandler";
 import { Button } from "../atoms/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
   handleCloseDialog,
 } from "../atoms/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../atoms/form";
-import { Input } from "../atoms/input";
-import { Textarea } from "../atoms/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../atoms/select";
-import { categories } from "~/data/categories";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { CreateProductForm } from "./formCreateProduct";
 
 const AddProduct = () => {
-  const createProductForm = useForm<CreateProduct>({
+  const createProductForm = useForm<BaseProduct>({
     resolver: zodResolver(createProductSchema),
     defaultValues: {
       name: "",
@@ -44,9 +33,9 @@ const AddProduct = () => {
     },
   });
 
-  const { mutate: createProduct, isPending } = useMutation({
+  const createProductHandler = useMutation({
     mutationKey: ["AddProductMutate"],
-    mutationFn: async (newProductData: Omit<Product, "id">) => {
+    mutationFn: async (newProductData: BaseProduct) => {
       const response = await productManager.createProduct(newProductData);
       return response;
     },
@@ -68,170 +57,26 @@ const AddProduct = () => {
     },
   });
 
-  
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
-        <Button
-          className=" mx-7 p-4 text- w-fit px-8"
-          size={"sm"}
-          variant={"outline"}
-        >
+        <Button className="  p-4 w-fit px-8">
           <PlusCircle /> Adicionar novo produto
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Insira as informações do produto</DialogTitle>
+          <DialogTitle className="text-2xl font-bold">
+            Criar produto
+          </DialogTitle>
+          <DialogDescription>
+            Insira as informações do produto
+          </DialogDescription>
         </DialogHeader>
-         <Form {...createProductForm}>
-      <form
-        onSubmit={ createProductForm.handleSubmit((data) => {
-              createProduct(data);
-            })}
-        className=" flex flex-col gap-4"
-      >
-        <div className="flex items-center gap-4">
-          <FormField
-            control={createProductForm.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nome</FormLabel>
-                <FormControl>
-                  <Input placeholder="Insira o nome do produto" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={createProductForm.control}
-            name="price"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Preço</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Insira o preço do produto"
-                    value={field.value ?? ""}
-                    onChange={(e) =>
-                      field.onChange(masks.money(e.target.value ?? ""))
-                    }
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex gap-4">
-          <FormField
-            control={createProductForm.control}
-            name="stock"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Estoque</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Insira a quantidade disponivel"
-                    type="number"
-                    value={field?.value ?? ""}
-                    onChange={(e) =>
-                      field.onChange(Number(e.target.value ?? ""))
-                    }
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={createProductForm.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem className="flex flex-col flex-1">
-                <FormLabel>Categoria</FormLabel>
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <FormControl>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Selecione a categoria" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div>
-          <FormField
-            control={createProductForm.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Url da imagem</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Insira a url da imagem"
-                    type="url"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div>
-          <FormField
-            control={createProductForm.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Descrição</FormLabel>
-                <FormControl>
-                  <Textarea
-                    maxLength={50}
-                    placeholder="Insira a descrição"
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    name={field.name}
-                    ref={field.ref}
-                    className="resize-none"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <Button
-          className="col-span-2 flex items-center gap-2"
-          disabled={isPending}
-        >
-          Adicionar produto <PlusCircle />{" "}
-        </Button>
-      </form>
-    </Form>
-
+        <CreateProductForm
+          createFormHandler={createProductHandler}
+          createProductForm={createProductForm}
+        />
       </DialogContent>
     </Dialog>
   );

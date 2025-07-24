@@ -1,35 +1,26 @@
-import { UserCircle } from "lucide-react";
-import Link from "next/link";
-import { Button } from "~/components/ui/atoms/button";
 import { ModeToggle } from "~/components/ui/molecules/modeToggle";
-import LogOutButton from "../molecules/logoutButton";
+import { DropDownNav } from "../molecules/dropdownNav";
+import { SquareDashedKanban } from "lucide-react";
 
 export const Header = () => {
   return (
-    <div className="bg-accent rounded-full py-2 px-4 my-4 flex items-center justify-between top-1">
-      <div>
-        <ModeToggle />
-      </div>
+    <div className="p-4 flex items-center justify-between top-0 sticky border-b shadow-md shadow-accent-foreground/10 backdrop-blur-2xl">
       <div>
         <h1
-          className=" border px-4 rounded-full shadow-accent-foreground/30 shadow-sm text-2xl font-bold tracking-tight text-primary   transition-all duration-300 ease-in-out
-          hover:bg-accent hover:text-accent-foreground hover:shadow-md
-          cursor-pointer"
+          className="border- px-4 text-2xl font-bold tracking-tight primary-foreground transition-all duration-300 ease-in-out
+          
+          cursor-pointer flex items-center"
         >
-          TRY<span className="text-muted-foreground">CESS</span>
+          <SquareDashedKanban size={32} className="mr-2" />
+          Try
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+            Cess
+          </span>
         </h1>
       </div>
       <div className="flex items-center gap-4 ">
-        <Button
-          size="icon"
-          className=" rounded-full bg-accent-foreground/30 w-8 h-8 flex items-center justify-center"
-          asChild
-        >
-          <Link href={"/user"}>
-            <UserCircle />
-          </Link>
-        </Button>
-        <LogOutButton />
+        <ModeToggle />
+        <DropDownNav />
       </div>
     </div>
   );

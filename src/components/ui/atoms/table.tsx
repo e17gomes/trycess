@@ -107,42 +107,6 @@ function TableCaption({
   );
 }
 
-type PageSizeSelectorProps = {
-  value: number;
-  onChange: (value: number) => void;
-  options?: number[];
-};
-
-function PageSizeSelector({
-  value,
-  onChange,
-  options = [5, 10, 20, 50],
-}: PageSizeSelectorProps) {
-  return (
-    <div className="inline-flex flex-col gap-1 mt-3">
-      <label htmlFor="page-size" className="text-sm text-muted-foreground">
-        Linhas por página
-      </label>
-      <select
-        id="page-size"
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="text-accent-foreground/70 border border-border bg-accent p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
-      >
-        {options.map((size) => (
-          <option
-            key={size}
-            value={size}
-            className="bg-background text-foreground hover:bg-muted"
-          >
-            {size} por página
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
 import { Button } from "~/components/ui/atoms/button";
 
 type TablePaginationControlsProps = {
@@ -196,6 +160,5 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-  PageSizeSelector,
   TablePaginationControls,
 };

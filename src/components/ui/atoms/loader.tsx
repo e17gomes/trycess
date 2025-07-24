@@ -12,6 +12,7 @@ export const Loader: FC<LoaderProps> = ({
   fallback = <Loading />,
   children,
 }) => {
+  // biome-ignore lint/style/useBlockStatements: <explanation>
   if (loading) return <>{fallback}</>;
   return <>{children}</>;
 };

@@ -1,14 +1,17 @@
+"use client";
+
 import {
-  Save,
-  Tag,
-  DollarSign,
-  Package,
   Boxes,
-  Image,
+  DollarSign,
   FileText,
+  Image,
+  Package,
+  PlusCircle,
+  Tag,
 } from "lucide-react";
-import type { UseFormReturn } from "react-hook-form";
-import { Button } from "~/components/ui/atoms/button";
+import { categories } from "~/data/categories";
+import { masks } from "~/utils/inputMasks";
+import { Button } from "../atoms/button";
 import {
   Form,
   FormControl,
@@ -16,12 +19,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/atoms/form";
-import { Input } from "~/components/ui/atoms/input";
-import { categories } from "~/data/categories";
-import type { EditProductHandlerType } from "~/types/editProductType";
-import type { Product } from "~/types/productsType";
-import { masks } from "~/utils/inputMasks";
+} from "../atoms/form";
+import { Input } from "../atoms/input";
 import {
   Select,
   SelectContent,
@@ -30,53 +29,41 @@ import {
   SelectValue,
 } from "../atoms/select";
 import { Textarea } from "../atoms/textarea";
+import type { UseFormReturn } from "react-hook-form";
+import type { CreateProductHandlerType } from "~/types/addProductType";
 
-type FormFieldsEditProductProps = {
-  editFormHandler: EditProductHandlerType;
-  onSubmit: (data: Product) => void;
-  editProductForm: UseFormReturn<
-    {
-      name: string;
-      description: string;
-      price: string;
-      stock: number;
-      category: string;
-      id: number;
-      imageUrl?: string | undefined;
-    },
-    any,
-    {
-      name: string;
-      description: string;
-      price: string;
-      stock: number;
-      category: string;
-      id: number;
-      imageUrl?: string | undefined;
-    }
-  >;
+type FormFieldsCreateProductProps = {
+  createFormHandler: CreateProductHandlerType;
+  createProductForm: UseFormReturn<{
+    name: string;
+    description: string;
+    price: string;
+    stock: number;
+    category: string;
+    imageUrl?: string | undefined;
+  }>;
 };
 
-export const FormFieldsEditProduct = ({
-  editProductForm,
-  onSubmit,
-  editFormHandler,
-}: FormFieldsEditProductProps) => {
+export const CreateProductForm = ({
+  createFormHandler,
+  createProductForm,
+}: FormFieldsCreateProductProps) => {
   return (
-    <Form {...editProductForm}>
+    <Form {...createProductForm}>
       <form
-        onSubmit={editProductForm.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
+        onSubmit={createProductForm.handleSubmit((data) => {
+          createFormHandler.mutate(data);
+        })}
+        className="flex flex-col gap-6"
       >
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           <FormField
-            control={editProductForm.control}
+            control={createProductForm.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="flex items-center gap-2">
-                  <Tag className="w-4 h-4" />
-                  Nome
+              <FormItem className="w-full">
+                <FormLabel className="flex gap-1">
+                  <Tag size={18} /> Nome
                 </FormLabel>
                 <FormControl>
                   <Input placeholder="Insira o nome do produto" {...field} />
@@ -85,14 +72,14 @@ export const FormFieldsEditProduct = ({
               </FormItem>
             )}
           />
+
           <FormField
-            control={editProductForm.control}
+            control={createProductForm.control}
             name="price"
             render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="flex items-center gap-2">
-                  <DollarSign className="w-4 h-4" />
-                  Preço
+              <FormItem className="w-full">
+                <FormLabel className="flex gap-1">
+                  <DollarSign size={18} /> Preço
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -112,21 +99,21 @@ export const FormFieldsEditProduct = ({
           />
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           <FormField
-            control={editProductForm.control}
+            control={createProductForm.control}
             name="stock"
             render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="flex items-center gap-2">
-                  <Package className="w-4 h-4" />
+              <FormItem className="w-full">
+                <FormLabel className="flex gap-1">
+                  <Package size={18} />
                   Estoque
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Insira a quantidade disponível"
                     type="number"
-                    value={field?.value ?? ""}
+                    value={field.value ?? ""}
                     onChange={(e) =>
                       field.onChange(Number(e.target.value ?? ""))
                     }
@@ -138,13 +125,12 @@ export const FormFieldsEditProduct = ({
           />
 
           <FormField
-            control={editProductForm.control}
+            control={createProductForm.control}
             name="category"
             render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel className="flex items-center gap-2">
-                  <Boxes className="w-4 h-4" />
-                  Categoria
+              <FormItem className="w-full">
+                <FormLabel className="flex gap-1">
+                  <Boxes size={18} /> Categoria
                 </FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
@@ -167,17 +153,16 @@ export const FormFieldsEditProduct = ({
         </div>
 
         <FormField
-          control={editProductForm.control}
+          control={createProductForm.control}
           name="imageUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex items-center gap-2">
-                <Image className="w-4 h-4" />
-                Url da imagem
+              <FormLabel className="flex gap-1">
+                <Image size={18} /> URL da imagem
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Insira a url da imagem"
+                  placeholder="Insira a URL da imagem"
                   type="url"
                   value={field.value}
                   onChange={field.onChange}
@@ -192,13 +177,12 @@ export const FormFieldsEditProduct = ({
         />
 
         <FormField
-          control={editProductForm.control}
+          control={createProductForm.control}
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex items-center gap-2">
-                <FileText className="w-4 h-4" />
-                Descrição
+              <FormLabel className="flex gap-1">
+                <FileText size={18} /> Descrição
               </FormLabel>
               <FormControl>
                 <Textarea
@@ -218,12 +202,10 @@ export const FormFieldsEditProduct = ({
         />
 
         <Button
-          className="flex items-center gap-2 w-full"
-          disabled={
-            editFormHandler.isPending || !editProductForm.formState.isDirty
-          }
+          className="mt-2 flex items-center gap-2"
+          disabled={createFormHandler.isPending}
         >
-          Salvar <Save />
+          Adicionar produto <PlusCircle />
         </Button>
       </form>
     </Form>

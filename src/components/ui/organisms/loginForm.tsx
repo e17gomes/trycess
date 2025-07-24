@@ -32,7 +32,7 @@ export function LoginForm({
         {...props}
       >
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Acesse ao sistema</h1>
+          <h1 className="text-2xl font-bold">Bem vindo</h1>
           <p className="text-muted-foreground text-sm text-balance">
             Insira o suas credenciais para acessar o sistema.
           </p>
@@ -112,6 +112,7 @@ export function LoginForm({
             variant={"ghost"}
             onClick={() => router.push("/register")}
             className="underline underline-offset-4 cursor-pointer"
+            type="button"
           >
             Registre-se
           </Button>
