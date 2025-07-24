@@ -166,7 +166,7 @@ export const FormFieldsEditProduct = ({
           />
         </div>
 
-                <FormField
+        <FormField
           control={editProductForm.control}
           name="imageUrl"
           render={({ field }) => (
@@ -191,7 +191,7 @@ export const FormFieldsEditProduct = ({
           )}
         />
 
-                <FormField
+        <FormField
           control={editProductForm.control}
           name="description"
           render={({ field }) => (
@@ -217,10 +217,11 @@ export const FormFieldsEditProduct = ({
           )}
         />
 
-
         <Button
           className="flex items-center gap-2 w-full"
-          disabled={editFormHandler.isPending || !editProductForm.formState.isDirty }
+          disabled={
+            editFormHandler.isPending || !editProductForm.formState.isDirty
+          }
         >
           Salvar <Save />
         </Button>

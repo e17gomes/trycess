@@ -13,12 +13,12 @@ export default function RootLayout({
       <main className="flex-1 overflow-auto px-4 min-h-[90dvh]">
         {children}
       </main>
-        <footer className="p-4 border-t flex gap-4 justify-between text-accent-foreground/70">
-          <span className="flex items-center gap-1">
-            Trycess <Copyright size={12} />
-          </span>
-          <span>More features coming soon</span>
-        </footer>
+      <footer className="p-4 border-t flex gap-4 justify-between text-accent-foreground/70">
+        <span className="flex items-center gap-1">
+          Trycess <Copyright size={12} />
+        </span>
+        <span>More features coming soon</span>
+      </footer>
     </div>
   );
 }

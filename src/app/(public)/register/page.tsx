@@ -32,9 +32,9 @@ const RegisterPage = () => {
         </div>
         <Card>
           <CardContent>
-          <RegisterForm />
+            <RegisterForm />
           </CardContent>
-          </Card>
+        </Card>
       </div>
     </div>
   );

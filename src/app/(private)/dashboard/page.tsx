@@ -7,9 +7,9 @@ const DashboardPage = () => {
         <h1 className="text-4xl font-bold  flex items-center gap-2 ">
           Meus Produtos
         </h1>
-          <span className="text-muted-foreground text-sm">
-            Gerencie seu inventário de itens
-          </span>
+        <span className="text-muted-foreground text-sm">
+          Gerencie seu inventário de itens
+        </span>
       </div>
       <ProductsTable />
     </div>

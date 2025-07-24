@@ -52,12 +52,8 @@ export const EditProductDialog = ({
         </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent className="max-w-lg" aria-describedby={undefined}>
-       <DialogTitle className="text-2xl font-bold">
-            Editar produto
-          </DialogTitle>
-          <DialogDescription>
-            Altere as informações do produto
-          </DialogDescription>
+        <DialogTitle className="text-2xl font-bold">Editar produto</DialogTitle>
+        <DialogDescription>Altere as informações do produto</DialogDescription>
         <FormFieldsEditProduct
           onSubmit={onSubmit}
           editFormHandler={editProductHandler}

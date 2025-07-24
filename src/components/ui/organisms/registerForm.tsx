@@ -29,7 +29,7 @@ export function RegisterForm({
     <Form {...registerForm}>
       <form
         onSubmit={registerForm.handleSubmit((data) =>
-          handleSubmitRegister(data)
+          handleSubmitRegister(data),
         )}
         className={cn("flex flex-col gap-6 w-10/12 m-auto", className)}
         {...props}
@@ -51,10 +51,7 @@ export function RegisterForm({
                   <User size={18} /> Nome Completo
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Seu nome completo"
-                    {...field}
-                  />
+                  <Input placeholder="Seu nome completo" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,7 +83,10 @@ export function RegisterForm({
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="password" className="flex items-center gap-1">
+                <FormLabel
+                  htmlFor="password"
+                  className="flex items-center gap-1"
+                >
                   <Lock size={18} /> Senha
                 </FormLabel>
                 <FormControl>
@@ -103,7 +103,9 @@ export function RegisterForm({
                       type="button"
                       onClick={() => setShowPassword((prev) => !prev)}
                       className="absolute inset-y-0 right-2 flex items-center px-2 text-muted-foreground"
-                      aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                      aria-label={
+                        showPassword ? "Ocultar senha" : "Mostrar senha"
+                      }
                       id="password-visibility-toggle"
                     >
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -120,7 +122,10 @@ export function RegisterForm({
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="confirmPassword" className="flex items-center gap-1">
+                <FormLabel
+                  htmlFor="confirmPassword"
+                  className="flex items-center gap-1"
+                >
                   <Lock size={18} /> Confirmar Senha
                 </FormLabel>
                 <FormControl>

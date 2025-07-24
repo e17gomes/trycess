@@ -44,7 +44,7 @@ export function productColumn({
       cell: ({ row }) =>
         row.original.imageUrl ? (
           <div className="w-12 ">
-          <ImageModal src={row.original.imageUrl} alt={row.original.name} />
+            <ImageModal src={row.original.imageUrl} alt={row.original.name} />
           </div>
         ) : (
           <div className="bg-sidebar-accent rounded-full h-12 w-12 flex items-center">
@@ -55,10 +55,12 @@ export function productColumn({
     {
       accessorKey: "name",
       header: "Nome",
-      cell: ({ row }) => <div className="capitalize flex flex-col">
-        <span>{row.original.name}</span>
-        <span className="text-muted-foreground">ID: {row.original.id}</span>
-        </div>,
+      cell: ({ row }) => (
+        <div className="capitalize flex flex-col">
+          <span>{row.original.name}</span>
+          <span className="text-muted-foreground">ID: {row.original.id}</span>
+        </div>
+      ),
     },
     {
       accessorKey: "price",
@@ -88,16 +90,20 @@ export function productColumn({
 
         switch (true) {
           case row.original.stock > 20:
-            closeToEnd = "bg-blue-400/60 dark:bg-blue-200 border border-blue-500 text-blue-800";
+            closeToEnd =
+              "bg-blue-400/60 dark:bg-blue-200 border border-blue-500 text-blue-800";
             break;
           case row.original.stock >= 10:
-            closeToEnd = "bg-green-400/60 dark:bg-green-200 border border-green-500 text-green-800";
+            closeToEnd =
+              "bg-green-400/60 dark:bg-green-200 border border-green-500 text-green-800";
             break;
           case row.original.stock > 5:
-            closeToEnd = "bg-yellow-400/60 dark:bg-yellow-200 border border-yellow-500 text-yellow-700";
+            closeToEnd =
+              "bg-yellow-400/60 dark:bg-yellow-200 border border-yellow-500 text-yellow-700";
             break;
           case row.original.stock <= 5:
-            closeToEnd = "bg-red-400/80 dark:bg-red-200 border border-red-400 text-red-700";
+            closeToEnd =
+              "bg-red-400/80 dark:bg-red-200 border border-red-400 text-red-700";
             break;
           default:
             closeToEnd = "bg-muted/60 dark:bg-muted-foreground/90";
@@ -148,29 +154,29 @@ export function productColumn({
         const product = row.original;
 
         return (
-        <div className="m-auto flex  justify-center w-full">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center">
-              <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              <DropdownMenuGroup>
-                <EditProductDialog
-                  editProductHandler={editProduct}
-                  product={product}
-                />
-                <DropdownMenuSeparator />
-                <DeleteProductDialog
-                  product={row.original}
-                  deleteProductHandler={deleteProduct}
-                />
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="m-auto flex  justify-center w-full">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                  <span className="sr-only">Open menu</span>
+                  <MoreHorizontal />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center">
+                <DropdownMenuLabel>Ações</DropdownMenuLabel>
+                <DropdownMenuGroup>
+                  <EditProductDialog
+                    editProductHandler={editProduct}
+                    product={product}
+                  />
+                  <DropdownMenuSeparator />
+                  <DeleteProductDialog
+                    product={row.original}
+                    deleteProductHandler={deleteProduct}
+                  />
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         );
       },

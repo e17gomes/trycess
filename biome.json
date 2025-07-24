@@ -37,7 +37,7 @@
         "useNumberNamespace": "error",
         "noInferrableTypes": "error",
         "noUselessElse": "error",
-        "noNamespace":"error",
+        "noNamespace": "error",
 
         "useConsistentArrayType": {
           "level": "error",

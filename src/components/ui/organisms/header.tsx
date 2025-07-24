@@ -9,9 +9,9 @@ export const Header = () => {
         <h1
           className="border- px-4 text-2xl font-bold tracking-tight primary-foreground transition-all duration-300 ease-in-out
           
-          cursor-pointer flex items-center" 
+          cursor-pointer flex items-center"
         >
-          <SquareDashedKanban size={32} className="mr-2"/>
+          <SquareDashedKanban size={32} className="mr-2" />
           Try
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
             Cess
@@ -20,7 +20,7 @@ export const Header = () => {
       </div>
       <div className="flex items-center gap-4 ">
         <ModeToggle />
-        <DropDownNav/>
+        <DropDownNav />
       </div>
     </div>
   );

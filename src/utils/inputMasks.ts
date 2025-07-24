@@ -42,10 +42,9 @@ export const masks = {
     cleanValue = cleanValue.replace(",", ".");
     return cleanValue;
   },
-  parsePrice:  (priceString: string) => {
-  return Number.parseFloat(
-    priceString.replace("R$", "").replace(/\./g, "").replace(",", ".").trim()
-  );
-}
-
+  parsePrice: (priceString: string) => {
+    return Number.parseFloat(
+      priceString.replace("R$", "").replace(/\./g, "").replace(",", ".").trim(),
+    );
+  },
 };

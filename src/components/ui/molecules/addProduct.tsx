@@ -60,8 +60,7 @@ const AddProduct = () => {
   return (
     <Dialog onOpenChange={resetOnCloseHandler(createProductForm)}>
       <DialogTrigger asChild>
-        <Button
-          className="  p-4 w-fit px-8"        >
+        <Button className="  p-4 w-fit px-8">
           <PlusCircle /> Adicionar novo produto
         </Button>
       </DialogTrigger>

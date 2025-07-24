@@ -2,7 +2,7 @@ import type { JSX } from "react";
 
 type SpinnerProps = {
   className?: string;
-  size?: number; 
+  size?: number;
 };
 
 export function LoadingComponent({

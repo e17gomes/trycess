@@ -19,7 +19,7 @@ export const TableLoader = () => {
 
       {Array.from({ length: 4 }).map((_, index) => (
         <div
-        // biome-ignore lint/suspicious/noArrayIndexKey: <>
+          // biome-ignore lint/suspicious/noArrayIndexKey: <>
           key={index}
           className="grid grid-cols-6 gap-4 py-4 items-center border-b border-accent last:border-b-0"
         >
