@@ -34,7 +34,7 @@ const UserPage = () => {
     },
   });
   return (
-    <div className="min-h-screen flex flex-col items-center py-12 px-4 bg-background text-foreground">
+    <div className=" flex flex-col items-center py-12 px-4 bg-background text-foreground">
       <div className="w-full max-w-3xl mb-8">
         <Button
           variant={"outline"}
@@ -50,8 +50,8 @@ const UserPage = () => {
 
       <Card className="w-full max-w-3xl shadow-2xl bg-card text-card-foreground rounded-lg overflow-hidden">
         <CardHeader className="border-b border-border pb-6 pt-8 px-8 bg-primary/5">
-          <CardTitle className="flex items-center gap-3 text-3xl font-bold text-primary">
-            <UserCircle className="w-8 h-8" />
+          <CardTitle className="flex items-center gap-3 text-3xl font-bold text-foreground">
+            <UserCircle className="w-8 h-8 text-primary"  />
             Perfil do Usuário
           </CardTitle>
         </CardHeader>
