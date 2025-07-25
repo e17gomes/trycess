@@ -10,7 +10,8 @@ export default function RootLayout({
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="flex-1 overflow-auto px-4 min-h-[90dvh]">
+      <main className="overflow-auto px-4 min-h-[calc(100dvh-9rem)]">
+
         {children}
       </main>
       <footer className="p-4 border-t flex gap-4 justify-between text-accent-foreground/70">

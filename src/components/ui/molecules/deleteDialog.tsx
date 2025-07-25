@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/atoms/dialog";
@@ -35,8 +36,11 @@ export const DeleteProductDialog = ({
         </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent className="max-w-md" aria-describedby={undefined}>
-        <DialogTitle className="text-lg font-semibold text-red-600">
+        <DialogTitle className="text-lg  font-semibold text-red-600">
+          Deletar produto
+        <DialogDescription className="pt-0 ">
           Tem certeza que deseja excluir este produto?
+        </DialogDescription>
         </DialogTitle>
         <p className="text-sm text-muted-foreground">
           Esta ação é irreversível. O produto <strong>{product.name}</strong>{" "}
